@@ -20,9 +20,15 @@ public class ModBlockStateProvider extends BlockStateProvider {
         blockWithItem(ModBlocks.SAPPHIRE_BLOCK);
         blockWithItem(ModBlocks.TOPAZ_BLOCK);
 
+        blockWithItem(ModBlocks.JADE_ORE);
+        blockWithItem(ModBlocks.RUBY_ORE);
         blockWithItem(ModBlocks.SAPPHIRE_ORE);
+        blockWithItem(ModBlocks.TOPAZ_ORE);
 
+        blockWithItem(ModBlocks.DEEPSLATE_JADE_ORE);
+        blockWithItem(ModBlocks.DEEPSLATE_RUBY_ORE);
         blockWithItem(ModBlocks.DEEPSLATE_SAPPHIRE_ORE);
+        blockWithItem(ModBlocks.DEEPSLATE_TOPAZ_ORE);
     }
 
     private void blockWithItem(RegistryObject<Block> blockRegistryObject) {

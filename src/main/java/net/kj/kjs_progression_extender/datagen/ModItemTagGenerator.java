@@ -1,6 +1,7 @@
 package net.kj.kjs_progression_extender.datagen;
 
 import net.kj.kjs_progression_extender.KJsProgressionExtender;
+import net.kj.kjs_progression_extender.block.ModBlocks;
 import net.kj.kjs_progression_extender.item.ModItems;
 import net.kj.kjs_progression_extender.util.ModTags;
 import net.minecraft.core.HolderLookup;
@@ -23,6 +24,10 @@ public class ModItemTagGenerator extends ItemTagsProvider {
                 .add(ModItems.JADE.get(),
                         ModItems.RUBY.get(),
                         ModItems.SAPPHIRE.get(),
-                        ModItems.TOPAZ.get());
+                        ModItems.TOPAZ.get(),
+                        ModBlocks.JADE_BLOCK.get().asItem(),
+                        ModBlocks.RUBY_BLOCK.get().asItem(),
+                        ModBlocks.SAPPHIRE_BLOCK.get().asItem(),
+                        ModBlocks.TOPAZ_BLOCK.get().asItem());
     }
 }

@@ -12,8 +12,7 @@ import net.minecraftforge.registries.RegistryObject;
 import java.util.Set;
 
 public class ModBlockLootTables extends BlockLootSubProvider {
-
-    protected ModBlockLootTables() {
+    public ModBlockLootTables() {
         super(Set.of(), FeatureFlags.REGISTRY.allFlags());
     }
 
@@ -24,11 +23,23 @@ public class ModBlockLootTables extends BlockLootSubProvider {
         this.dropSelf(ModBlocks.SAPPHIRE_BLOCK.get());
         this.dropSelf(ModBlocks.TOPAZ_BLOCK.get());
 
+        this.add(ModBlocks.JADE_ORE.get(),
+                block -> createOreDrop(ModBlocks.JADE_ORE.get(), ModItems.JADE.get()));
+        this.add(ModBlocks.RUBY_ORE.get(),
+                block -> createOreDrop(ModBlocks.RUBY_ORE.get(), ModItems.RUBY.get()));
         this.add(ModBlocks.SAPPHIRE_ORE.get(),
                 block -> createOreDrop(ModBlocks.SAPPHIRE_ORE.get(), ModItems.SAPPHIRE.get()));
+        this.add(ModBlocks.TOPAZ_ORE.get(),
+                block -> createOreDrop(ModBlocks.TOPAZ_ORE.get(), ModItems.TOPAZ.get()));
 
+        this.add(ModBlocks.DEEPSLATE_JADE_ORE.get(),
+                block -> createOreDrop(ModBlocks.DEEPSLATE_JADE_ORE.get(), ModItems.JADE.get()));
+        this.add(ModBlocks.DEEPSLATE_RUBY_ORE.get(),
+                block -> createOreDrop(ModBlocks.DEEPSLATE_RUBY_ORE.get(), ModItems.RUBY.get()));
         this.add(ModBlocks.DEEPSLATE_SAPPHIRE_ORE.get(),
                 block -> createOreDrop(ModBlocks.DEEPSLATE_SAPPHIRE_ORE.get(), ModItems.SAPPHIRE.get()));
+        this.add(ModBlocks.DEEPSLATE_TOPAZ_ORE.get(),
+                block -> createOreDrop(ModBlocks.DEEPSLATE_TOPAZ_ORE.get(), ModItems.TOPAZ.get()));
     }
 
     @Override

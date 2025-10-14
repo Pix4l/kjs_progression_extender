@@ -20,8 +20,15 @@ public class ModCreativeModeTabs {
                     .title(Component.translatable("creativetab.kjs_progression_extender_materials_tab"))
                     .displayItems((itemDisplayParameters, output) -> {
                         //Gemstone Ores
+                        output.accept(ModBlocks.JADE_ORE.get());
+                        output.accept(ModBlocks.RUBY_ORE.get());
                         output.accept(ModBlocks.SAPPHIRE_ORE.get());
+                        output.accept(ModBlocks.TOPAZ_ORE.get());
+
+                        output.accept(ModBlocks.DEEPSLATE_JADE_ORE.get());
+                        output.accept(ModBlocks.DEEPSLATE_RUBY_ORE.get());
                         output.accept(ModBlocks.DEEPSLATE_SAPPHIRE_ORE.get());
+                        output.accept(ModBlocks.DEEPSLATE_TOPAZ_ORE.get());
 
                         //Gemstone Blocks
                         output.accept(ModBlocks.JADE_BLOCK.get());

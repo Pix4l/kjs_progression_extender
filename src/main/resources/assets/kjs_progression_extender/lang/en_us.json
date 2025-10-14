@@ -11,9 +11,15 @@
   "block.kjs_progression_extender.sapphire_block": "Block of Sapphire",
   "block.kjs_progression_extender.topaz_block": "Block of Topaz",
 
+  "block.kjs_progression_extender.jade_ore": "Jade Ore",
+  "block.kjs_progression_extender.ruby_ore": "Ruby Ore",
   "block.kjs_progression_extender.sapphire_ore": "Sapphire Ore",
+  "block.kjs_progression_extender.topaz_ore": "Topaz Ore",
 
+  "block.kjs_progression_extender.deepslate_jade_ore": "Deepslate Jade Ore",
+  "block.kjs_progression_extender.deepslate_ruby_ore": "Deepslate Ruby Ore",
   "block.kjs_progression_extender.deepslate_sapphire_ore": "Deepslate Sapphire Ore",
+  "block.kjs_progression_extender.deepslate_topaz_ore": "Deepslate Topaz Ore",
 
 
   "creativetab.kjs_progression_extender_materials_tab": "KJ's Progression Extender Materials"

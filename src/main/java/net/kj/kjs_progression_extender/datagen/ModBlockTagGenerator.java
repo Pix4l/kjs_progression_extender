@@ -28,23 +28,41 @@ public class ModBlockTagGenerator extends BlockTagsProvider {
                         ModBlocks.TOPAZ_BLOCK.get());
 
         this.tag(Tags.Blocks.ORES)
-                .add(ModBlocks.SAPPHIRE_ORE.get(),
-                        ModBlocks.DEEPSLATE_SAPPHIRE_ORE.get());
+                .add(ModBlocks.JADE_ORE.get(),
+                        ModBlocks.RUBY_ORE.get(),
+                        ModBlocks.SAPPHIRE_ORE.get(),
+                        ModBlocks.TOPAZ_ORE.get(),
+                        ModBlocks.DEEPSLATE_JADE_ORE.get(),
+                        ModBlocks.DEEPSLATE_RUBY_ORE.get(),
+                        ModBlocks.DEEPSLATE_SAPPHIRE_ORE.get(),
+                        ModBlocks.DEEPSLATE_TOPAZ_ORE.get());
 
         this.tag(BlockTags.NEEDS_DIAMOND_TOOL)
                 .add(ModBlocks.JADE_BLOCK.get(),
                         ModBlocks.RUBY_BLOCK.get(),
                         ModBlocks.SAPPHIRE_BLOCK.get(),
                         ModBlocks.TOPAZ_BLOCK.get(),
+                        ModBlocks.JADE_ORE.get(),
+                        ModBlocks.RUBY_ORE.get(),
                         ModBlocks.SAPPHIRE_ORE.get(),
-                        ModBlocks.DEEPSLATE_SAPPHIRE_ORE.get());
+                        ModBlocks.TOPAZ_ORE.get(),
+                        ModBlocks.DEEPSLATE_JADE_ORE.get(),
+                        ModBlocks.DEEPSLATE_RUBY_ORE.get(),
+                        ModBlocks.DEEPSLATE_SAPPHIRE_ORE.get(),
+                        ModBlocks.DEEPSLATE_TOPAZ_ORE.get());
 
         this.tag(BlockTags.MINEABLE_WITH_PICKAXE)
                 .add(ModBlocks.JADE_BLOCK.get(),
                         ModBlocks.RUBY_BLOCK.get(),
                         ModBlocks.SAPPHIRE_BLOCK.get(),
                         ModBlocks.TOPAZ_BLOCK.get(),
+                        ModBlocks.JADE_ORE.get(),
+                        ModBlocks.RUBY_ORE.get(),
                         ModBlocks.SAPPHIRE_ORE.get(),
-                        ModBlocks.DEEPSLATE_SAPPHIRE_ORE.get());
+                        ModBlocks.TOPAZ_ORE.get(),
+                        ModBlocks.DEEPSLATE_JADE_ORE.get(),
+                        ModBlocks.DEEPSLATE_RUBY_ORE.get(),
+                        ModBlocks.DEEPSLATE_SAPPHIRE_ORE.get(),
+                        ModBlocks.DEEPSLATE_TOPAZ_ORE.get());
     }
 }
