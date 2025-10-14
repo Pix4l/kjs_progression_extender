@@ -1,0 +1,20 @@
+{
+  "item.kjs_progression_extender.jade": "Amethyst",
+  "item.kjs_progression_extender.ruby": "Ruby",
+  "item.kjs_progression_extender.sapphire": "Sapphire",
+  "item.kjs_progression_extender.topaz": "Topaz",
+
+  "item.kjs_progression_extender.test_item": "Test Item",
+
+  "block.kjs_progression_extender.jade_block": "Block of Jade",
+  "block.kjs_progression_extender.ruby_block": "Block of Ruby",
+  "block.kjs_progression_extender.sapphire_block": "Block of Sapphire",
+  "block.kjs_progression_extender.topaz_block": "Block of Topaz",
+
+  "block.kjs_progression_extender.sapphire_ore": "Sapphire Ore",
+
+  "block.kjs_progression_extender.deepslate_sapphire_ore": "Deepslate Sapphire Ore",
+
+
+  "creativetab.kjs_progression_extender_materials_tab": "KJ's Progression Extender Materials"
+}

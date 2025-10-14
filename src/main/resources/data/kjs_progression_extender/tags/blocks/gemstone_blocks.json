@@ -1,0 +1,8 @@
+{
+  "values": [
+    "kjs_progression_extender:jade_block",
+    "kjs_progression_extender:ruby_block",
+    "kjs_progression_extender:sapphire_block",
+    "kjs_progression_extender:topaz_block"
+  ]
+}
