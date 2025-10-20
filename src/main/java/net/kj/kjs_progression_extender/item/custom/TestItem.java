@@ -6,6 +6,7 @@ import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
 import net.minecraft.world.item.context.UseOnContext;
 
 public class TestItem extends Item {
@@ -18,12 +19,13 @@ public class TestItem extends Item {
             Player player = pContext.getPlayer();
 
             ItemStack offhandItemStack = player.getOffhandItem();
+            Item item = Items.ENCHANTED_GOLDEN_APPLE;
 
             if(offhandItemStack.is(ModTags.Items.GEMSTONES)) {
                 player.sendSystemMessage(Component.literal("You are holding a gemstone"));
             }
             else {
-                player.sendSystemMessage(Component.literal("hee hee hee haw"));
+                player.sendSystemMessage(Component.literal("hehehehaw"));
             }
         }
 

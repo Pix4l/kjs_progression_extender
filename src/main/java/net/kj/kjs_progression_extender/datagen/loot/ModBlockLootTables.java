@@ -23,6 +23,21 @@ public class ModBlockLootTables extends BlockLootSubProvider {
         this.dropSelf(ModBlocks.SAPPHIRE_BLOCK.get());
         this.dropSelf(ModBlocks.TOPAZ_BLOCK.get());
 
+        this.dropSelf(ModBlocks.EMPOWERED_JADE_BLOCK.get());
+        this.dropSelf(ModBlocks.EMPOWERED_RUBY_BLOCK.get());
+        this.dropSelf(ModBlocks.EMPOWERED_SAPPHIRE_BLOCK.get());
+        this.dropSelf(ModBlocks.EMPOWERED_TOPAZ_BLOCK.get());
+
+        this.dropSelf(ModBlocks.HYPER_JADE_BLOCK.get());
+        this.dropSelf(ModBlocks.HYPER_RUBY_BLOCK.get());
+        this.dropSelf(ModBlocks.HYPER_SAPPHIRE_BLOCK.get());
+        this.dropSelf(ModBlocks.HYPER_TOPAZ_BLOCK.get());
+
+        this.dropSelf(ModBlocks.OMEGA_JADE_BLOCK.get());
+        this.dropSelf(ModBlocks.OMEGA_RUBY_BLOCK.get());
+        this.dropSelf(ModBlocks.OMEGA_SAPPHIRE_BLOCK.get());
+        this.dropSelf(ModBlocks.OMEGA_TOPAZ_BLOCK.get());
+
         this.add(ModBlocks.JADE_ORE.get(),
                 block -> createOreDrop(ModBlocks.JADE_ORE.get(), ModItems.JADE.get()));
         this.add(ModBlocks.RUBY_ORE.get(),
@@ -40,6 +55,11 @@ public class ModBlockLootTables extends BlockLootSubProvider {
                 block -> createOreDrop(ModBlocks.DEEPSLATE_SAPPHIRE_ORE.get(), ModItems.SAPPHIRE.get()));
         this.add(ModBlocks.DEEPSLATE_TOPAZ_ORE.get(),
                 block -> createOreDrop(ModBlocks.DEEPSLATE_TOPAZ_ORE.get(), ModItems.TOPAZ.get()));
+
+        this.dropSelf(ModBlocks.AMALGAMITE_BLOCK.get());
+
+        this.add(ModBlocks.DEEPSLATE_AMALGAMITE_ORE.get(),
+                block -> createOreDrop(ModBlocks.DEEPSLATE_AMALGAMITE_ORE.get(), ModItems.AMALGAMITE.get()));
     }
 
     @Override

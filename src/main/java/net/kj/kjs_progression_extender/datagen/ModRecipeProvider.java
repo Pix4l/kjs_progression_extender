@@ -5,9 +5,8 @@ import net.kj.kjs_progression_extender.block.ModBlocks;
 import net.kj.kjs_progression_extender.item.ModItems;
 import net.minecraft.data.PackOutput;
 import net.minecraft.data.recipes.*;
-import net.minecraft.world.item.crafting.AbstractCookingRecipe;
-import net.minecraft.world.item.crafting.Ingredient;
-import net.minecraft.world.item.crafting.RecipeSerializer;
+import net.minecraft.world.item.Items;
+import net.minecraft.world.item.crafting.*;
 import net.minecraft.world.level.ItemLike;
 import net.minecraftforge.common.crafting.conditions.IConditionBuilder;
 
@@ -65,6 +64,204 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
                 .unlockedBy(getHasName(ModItems.TOPAZ.get()), has(ModItems.TOPAZ.get()))
                 .save(pWriter);
 
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ModBlocks.EMPOWERED_JADE_BLOCK.get())
+                .pattern("JJJ")
+                .pattern("JJJ")
+                .pattern("JJJ")
+                .define('J', ModItems.EMPOWERED_JADE.get())
+                .unlockedBy(getHasName(ModItems.EMPOWERED_CORE.get()), has(ModItems.EMPOWERED_CORE.get()))
+                .save(pWriter);
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ModBlocks.EMPOWERED_RUBY_BLOCK.get())
+                .pattern("RRR")
+                .pattern("RRR")
+                .pattern("RRR")
+                .define('R', ModItems.EMPOWERED_RUBY.get())
+                .unlockedBy(getHasName(ModItems.EMPOWERED_CORE.get()), has(ModItems.EMPOWERED_CORE.get()))
+                .save(pWriter);
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ModBlocks.EMPOWERED_SAPPHIRE_BLOCK.get())
+                .pattern("SSS")
+                .pattern("SSS")
+                .pattern("SSS")
+                .define('S', ModItems.EMPOWERED_SAPPHIRE.get())
+                .unlockedBy(getHasName(ModItems.EMPOWERED_CORE.get()), has(ModItems.EMPOWERED_CORE.get()))
+                .save(pWriter);
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ModBlocks.EMPOWERED_TOPAZ_BLOCK.get())
+                .pattern("TTT")
+                .pattern("TTT")
+                .pattern("TTT")
+                .define('T', ModItems.EMPOWERED_TOPAZ.get())
+                .unlockedBy(getHasName(ModItems.EMPOWERED_CORE.get()), has(ModItems.EMPOWERED_CORE.get()))
+                .save(pWriter);
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ModBlocks.HYPER_JADE_BLOCK.get())
+                .pattern("JJJ")
+                .pattern("JJJ")
+                .pattern("JJJ")
+                .define('J', ModItems.HYPER_JADE.get())
+                .unlockedBy(getHasName(ModItems.HYPER_CORE.get()), has(ModItems.HYPER_CORE.get()))
+                .save(pWriter);
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ModBlocks.HYPER_RUBY_BLOCK.get())
+                .pattern("RRR")
+                .pattern("RRR")
+                .pattern("RRR")
+                .define('R', ModItems.HYPER_RUBY.get())
+                .unlockedBy(getHasName(ModItems.HYPER_CORE.get()), has(ModItems.HYPER_CORE.get()))
+                .save(pWriter);
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ModBlocks.HYPER_SAPPHIRE_BLOCK.get())
+                .pattern("SSS")
+                .pattern("SSS")
+                .pattern("SSS")
+                .define('S', ModItems.HYPER_SAPPHIRE.get())
+                .unlockedBy(getHasName(ModItems.HYPER_CORE.get()), has(ModItems.HYPER_CORE.get()))
+                .save(pWriter);
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ModBlocks.HYPER_TOPAZ_BLOCK.get())
+                .pattern("TTT")
+                .pattern("TTT")
+                .pattern("TTT")
+                .define('T', ModItems.HYPER_TOPAZ.get())
+                .unlockedBy(getHasName(ModItems.HYPER_CORE.get()), has(ModItems.HYPER_CORE.get()))
+                .save(pWriter);
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ModBlocks.OMEGA_JADE_BLOCK.get())
+                .pattern("JJJ")
+                .pattern("JJJ")
+                .pattern("JJJ")
+                .define('J', ModItems.OMEGA_JADE.get())
+                .unlockedBy(getHasName(ModItems.OMEGA_CORE.get()), has(ModItems.OMEGA_CORE.get()))
+                .save(pWriter);
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ModBlocks.OMEGA_RUBY_BLOCK.get())
+                .pattern("RRR")
+                .pattern("RRR")
+                .pattern("RRR")
+                .define('R', ModItems.OMEGA_RUBY.get())
+                .unlockedBy(getHasName(ModItems.OMEGA_CORE.get()), has(ModItems.OMEGA_CORE.get()))
+                .save(pWriter);
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ModBlocks.OMEGA_SAPPHIRE_BLOCK.get())
+                .pattern("SSS")
+                .pattern("SSS")
+                .pattern("SSS")
+                .define('S', ModItems.OMEGA_SAPPHIRE.get())
+                .unlockedBy(getHasName(ModItems.OMEGA_CORE.get()), has(ModItems.OMEGA_CORE.get()))
+                .save(pWriter);
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ModBlocks.OMEGA_TOPAZ_BLOCK.get())
+                .pattern("TTT")
+                .pattern("TTT")
+                .pattern("TTT")
+                .define('T', ModItems.OMEGA_TOPAZ.get())
+                .unlockedBy(getHasName(ModItems.OMEGA_CORE.get()), has(ModItems.OMEGA_CORE.get()))
+                .save(pWriter);
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ModItems.EMPOWERED_JADE.get())
+                .pattern(" J ")
+                .pattern("J#J")
+                .pattern(" J ")
+                .define('J', ModBlocks.JADE_BLOCK.get())
+                .define('#', ModItems.EMPOWERED_CORE.get())
+                .unlockedBy(getHasName(ModItems.EMPOWERED_CORE.get()), has(ModItems.EMPOWERED_CORE.get()))
+                .save(pWriter);
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ModItems.EMPOWERED_RUBY.get())
+                .pattern(" R ")
+                .pattern("R#R")
+                .pattern(" R ")
+                .define('R', ModBlocks.RUBY_BLOCK.get())
+                .define('#', ModItems.EMPOWERED_CORE.get())
+                .unlockedBy(getHasName(ModItems.EMPOWERED_CORE.get()), has(ModItems.EMPOWERED_CORE.get()))
+                .save(pWriter);
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ModItems.EMPOWERED_SAPPHIRE.get())
+                .pattern(" S ")
+                .pattern("S#S")
+                .pattern(" S ")
+                .define('S', ModBlocks.SAPPHIRE_BLOCK.get())
+                .define('#', ModItems.EMPOWERED_CORE.get())
+                .unlockedBy(getHasName(ModItems.EMPOWERED_CORE.get()), has(ModItems.EMPOWERED_CORE.get()))
+                .save(pWriter);
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ModItems.EMPOWERED_TOPAZ.get())
+                .pattern(" T ")
+                .pattern("T#T")
+                .pattern(" T ")
+                .define('T', ModBlocks.TOPAZ_BLOCK.get())
+                .define('#', ModItems.EMPOWERED_CORE.get())
+                .unlockedBy(getHasName(ModItems.EMPOWERED_CORE.get()), has(ModItems.EMPOWERED_CORE.get()))
+                .save(pWriter);
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ModItems.HYPER_JADE.get())
+                .pattern(" J ")
+                .pattern("J#J")
+                .pattern(" J ")
+                .define('J', ModBlocks.EMPOWERED_JADE_BLOCK.get())
+                .define('#', ModItems.HYPER_CORE.get())
+                .unlockedBy(getHasName(ModItems.HYPER_CORE.get()), has(ModItems.HYPER_CORE.get()))
+                .save(pWriter);
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ModItems.HYPER_RUBY.get())
+                .pattern(" R ")
+                .pattern("R#R")
+                .pattern(" R ")
+                .define('R', ModBlocks.EMPOWERED_RUBY_BLOCK.get())
+                .define('#', ModItems.HYPER_CORE.get())
+                .unlockedBy(getHasName(ModItems.HYPER_CORE.get()), has(ModItems.HYPER_CORE.get()))
+                .save(pWriter);
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ModItems.HYPER_SAPPHIRE.get())
+                .pattern(" S ")
+                .pattern("S#S")
+                .pattern(" S ")
+                .define('S', ModBlocks.EMPOWERED_SAPPHIRE_BLOCK.get())
+                .define('#', ModItems.HYPER_CORE.get())
+                .unlockedBy(getHasName(ModItems.HYPER_CORE.get()), has(ModItems.HYPER_CORE.get()))
+                .save(pWriter);
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ModItems.HYPER_TOPAZ.get())
+                .pattern(" T ")
+                .pattern("T#T")
+                .pattern(" T ")
+                .define('T', ModBlocks.EMPOWERED_TOPAZ_BLOCK.get())
+                .define('#', ModItems.HYPER_CORE.get())
+                .unlockedBy(getHasName(ModItems.HYPER_CORE.get()), has(ModItems.HYPER_CORE.get()))
+                .save(pWriter);
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ModItems.OMEGA_JADE.get())
+                .pattern(" J ")
+                .pattern("J#J")
+                .pattern(" J ")
+                .define('J', ModBlocks.HYPER_JADE_BLOCK.get())
+                .define('#', ModItems.OMEGA_CORE.get())
+                .unlockedBy(getHasName(ModItems.OMEGA_CORE.get()), has(ModItems.OMEGA_CORE.get()))
+                .save(pWriter);
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ModItems.OMEGA_RUBY.get())
+                .pattern(" R ")
+                .pattern("R#R")
+                .pattern(" R ")
+                .define('R', ModBlocks.HYPER_RUBY_BLOCK.get())
+                .define('#', ModItems.OMEGA_CORE.get())
+                .unlockedBy(getHasName(ModItems.OMEGA_CORE.get()), has(ModItems.OMEGA_CORE.get()))
+                .save(pWriter);
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ModItems.OMEGA_SAPPHIRE.get())
+                .pattern(" S ")
+                .pattern("S#S")
+                .pattern(" S ")
+                .define('S', ModBlocks.HYPER_SAPPHIRE_BLOCK.get())
+                .define('#', ModItems.OMEGA_CORE.get())
+                .unlockedBy(getHasName(ModItems.OMEGA_CORE.get()), has(ModItems.OMEGA_CORE.get()))
+                .save(pWriter);
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ModItems.OMEGA_TOPAZ.get())
+                .pattern(" T ")
+                .pattern("T#T")
+                .pattern(" T ")
+                .define('T', ModBlocks.HYPER_TOPAZ_BLOCK.get())
+                .define('#', ModItems.OMEGA_CORE.get())
+                .unlockedBy(getHasName(ModItems.OMEGA_CORE.get()), has(ModItems.OMEGA_CORE.get()))
+                .save(pWriter);
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ModItems.ELEMENTAL_SINGULARITY.get())
+                .pattern(" R ")
+                .pattern("J#S")
+                .pattern(" T ")
+                .define('J', ModBlocks.OMEGA_JADE_BLOCK.get())
+                .define('R', ModBlocks.OMEGA_RUBY_BLOCK.get())
+                .define('S', ModBlocks.OMEGA_SAPPHIRE_BLOCK.get())
+                .define('T', ModBlocks.OMEGA_TOPAZ_BLOCK.get())
+                .define('#', ModItems.STARFORGED_CORE.get())
+                .unlockedBy(getHasName(ModItems.STARFORGED_CORE.get()), has(ModItems.STARFORGED_CORE.get()))
+                .save(pWriter);
+
         ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, ModItems.JADE.get(), 9)
                 .requires(ModBlocks.JADE_BLOCK.get())
                 .unlockedBy(getHasName(ModBlocks.JADE_BLOCK.get()), has(ModBlocks.JADE_BLOCK.get()))
@@ -82,7 +279,6 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
                 .unlockedBy(getHasName(ModBlocks.TOPAZ_BLOCK.get()), has(ModBlocks.TOPAZ_BLOCK.get()))
                 .save(pWriter);
     }
-
     protected static void oreSmelting(Consumer<FinishedRecipe> pFinishedRecipeConsumer, List<ItemLike> pIngredients, RecipeCategory pCategory, ItemLike pResult, float pExperience, int pCookingTIme, String pGroup) {
         oreCooking(pFinishedRecipeConsumer, RecipeSerializer.SMELTING_RECIPE, pIngredients, pCategory, pResult, pExperience, pCookingTIme, pGroup, "_from_smelting");
     }
@@ -98,6 +294,7 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
                     .group(pGroup).unlockedBy(getHasName(itemlike), has(itemlike))
                     .save(pFinishedRecipeConsumer, KJsProgressionExtender.MOD_ID + ":" + (pResult) + pRecipeName + "_" + getItemName(itemlike));
         }
-
     }
+
+
 }

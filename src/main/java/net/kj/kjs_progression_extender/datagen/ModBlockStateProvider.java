@@ -20,6 +20,21 @@ public class ModBlockStateProvider extends BlockStateProvider {
         blockWithItem(ModBlocks.SAPPHIRE_BLOCK);
         blockWithItem(ModBlocks.TOPAZ_BLOCK);
 
+        blockWithItem(ModBlocks.EMPOWERED_JADE_BLOCK);
+        blockWithItem(ModBlocks.EMPOWERED_RUBY_BLOCK);
+        blockWithItem(ModBlocks.EMPOWERED_SAPPHIRE_BLOCK);
+        blockWithItem(ModBlocks.EMPOWERED_TOPAZ_BLOCK);
+
+        blockWithItem(ModBlocks.HYPER_JADE_BLOCK);
+        blockWithItem(ModBlocks.HYPER_RUBY_BLOCK);
+        blockWithItem(ModBlocks.HYPER_SAPPHIRE_BLOCK);
+        blockWithItem(ModBlocks.HYPER_TOPAZ_BLOCK);
+
+        blockWithItem(ModBlocks.OMEGA_JADE_BLOCK);
+        blockWithItem(ModBlocks.OMEGA_RUBY_BLOCK);
+        blockWithItem(ModBlocks.OMEGA_SAPPHIRE_BLOCK);
+        blockWithItem(ModBlocks.OMEGA_TOPAZ_BLOCK);
+
         blockWithItem(ModBlocks.JADE_ORE);
         blockWithItem(ModBlocks.RUBY_ORE);
         blockWithItem(ModBlocks.SAPPHIRE_ORE);
@@ -29,6 +44,10 @@ public class ModBlockStateProvider extends BlockStateProvider {
         blockWithItem(ModBlocks.DEEPSLATE_RUBY_ORE);
         blockWithItem(ModBlocks.DEEPSLATE_SAPPHIRE_ORE);
         blockWithItem(ModBlocks.DEEPSLATE_TOPAZ_ORE);
+
+        blockWithItem(ModBlocks.AMALGAMITE_BLOCK);
+
+        blockWithItem(ModBlocks.DEEPSLATE_AMALGAMITE_ORE);
     }
 
     private void blockWithItem(RegistryObject<Block> blockRegistryObject) {

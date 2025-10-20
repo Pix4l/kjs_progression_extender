@@ -25,7 +25,19 @@ public class ModBlockTagGenerator extends BlockTagsProvider {
                 .add(ModBlocks.JADE_BLOCK.get(),
                         ModBlocks.RUBY_BLOCK.get(),
                         ModBlocks.SAPPHIRE_BLOCK.get(),
-                        ModBlocks.TOPAZ_BLOCK.get());
+                        ModBlocks.TOPAZ_BLOCK.get(),
+                        ModBlocks.EMPOWERED_JADE_BLOCK.get(),
+                        ModBlocks.EMPOWERED_RUBY_BLOCK.get(),
+                        ModBlocks.EMPOWERED_SAPPHIRE_BLOCK.get(),
+                        ModBlocks.EMPOWERED_TOPAZ_BLOCK.get(),
+                        ModBlocks.HYPER_JADE_BLOCK.get(),
+                        ModBlocks.HYPER_RUBY_BLOCK.get(),
+                        ModBlocks.HYPER_SAPPHIRE_BLOCK.get(),
+                        ModBlocks.HYPER_TOPAZ_BLOCK.get(),
+                        ModBlocks.OMEGA_JADE_BLOCK.get(),
+                        ModBlocks.OMEGA_RUBY_BLOCK.get(),
+                        ModBlocks.OMEGA_SAPPHIRE_BLOCK.get(),
+                        ModBlocks.OMEGA_TOPAZ_BLOCK.get());
 
         this.tag(Tags.Blocks.ORES)
                 .add(ModBlocks.JADE_ORE.get(),
@@ -35,13 +47,26 @@ public class ModBlockTagGenerator extends BlockTagsProvider {
                         ModBlocks.DEEPSLATE_JADE_ORE.get(),
                         ModBlocks.DEEPSLATE_RUBY_ORE.get(),
                         ModBlocks.DEEPSLATE_SAPPHIRE_ORE.get(),
-                        ModBlocks.DEEPSLATE_TOPAZ_ORE.get());
+                        ModBlocks.DEEPSLATE_TOPAZ_ORE.get(),
+                        ModBlocks.DEEPSLATE_AMALGAMITE_ORE.get());
 
-        this.tag(BlockTags.NEEDS_DIAMOND_TOOL)
+        this.tag(Tags.Blocks.NEEDS_NETHERITE_TOOL)
                 .add(ModBlocks.JADE_BLOCK.get(),
                         ModBlocks.RUBY_BLOCK.get(),
                         ModBlocks.SAPPHIRE_BLOCK.get(),
                         ModBlocks.TOPAZ_BLOCK.get(),
+                        ModBlocks.EMPOWERED_JADE_BLOCK.get(),
+                        ModBlocks.EMPOWERED_RUBY_BLOCK.get(),
+                        ModBlocks.EMPOWERED_SAPPHIRE_BLOCK.get(),
+                        ModBlocks.EMPOWERED_TOPAZ_BLOCK.get(),
+                        ModBlocks.HYPER_JADE_BLOCK.get(),
+                        ModBlocks.HYPER_RUBY_BLOCK.get(),
+                        ModBlocks.HYPER_SAPPHIRE_BLOCK.get(),
+                        ModBlocks.HYPER_TOPAZ_BLOCK.get(),
+                        ModBlocks.OMEGA_JADE_BLOCK.get(),
+                        ModBlocks.OMEGA_RUBY_BLOCK.get(),
+                        ModBlocks.OMEGA_SAPPHIRE_BLOCK.get(),
+                        ModBlocks.OMEGA_TOPAZ_BLOCK.get(),
                         ModBlocks.JADE_ORE.get(),
                         ModBlocks.RUBY_ORE.get(),
                         ModBlocks.SAPPHIRE_ORE.get(),
@@ -49,13 +74,27 @@ public class ModBlockTagGenerator extends BlockTagsProvider {
                         ModBlocks.DEEPSLATE_JADE_ORE.get(),
                         ModBlocks.DEEPSLATE_RUBY_ORE.get(),
                         ModBlocks.DEEPSLATE_SAPPHIRE_ORE.get(),
-                        ModBlocks.DEEPSLATE_TOPAZ_ORE.get());
+                        ModBlocks.DEEPSLATE_TOPAZ_ORE.get(),
+                        ModBlocks.DEEPSLATE_AMALGAMITE_ORE.get(),
+                        ModBlocks.AMALGAMITE_BLOCK.get());
 
         this.tag(BlockTags.MINEABLE_WITH_PICKAXE)
                 .add(ModBlocks.JADE_BLOCK.get(),
                         ModBlocks.RUBY_BLOCK.get(),
                         ModBlocks.SAPPHIRE_BLOCK.get(),
                         ModBlocks.TOPAZ_BLOCK.get(),
+                        ModBlocks.EMPOWERED_JADE_BLOCK.get(),
+                        ModBlocks.EMPOWERED_RUBY_BLOCK.get(),
+                        ModBlocks.EMPOWERED_SAPPHIRE_BLOCK.get(),
+                        ModBlocks.EMPOWERED_TOPAZ_BLOCK.get(),
+                        ModBlocks.HYPER_JADE_BLOCK.get(),
+                        ModBlocks.HYPER_RUBY_BLOCK.get(),
+                        ModBlocks.HYPER_SAPPHIRE_BLOCK.get(),
+                        ModBlocks.HYPER_TOPAZ_BLOCK.get(),
+                        ModBlocks.OMEGA_JADE_BLOCK.get(),
+                        ModBlocks.OMEGA_RUBY_BLOCK.get(),
+                        ModBlocks.OMEGA_SAPPHIRE_BLOCK.get(),
+                        ModBlocks.OMEGA_TOPAZ_BLOCK.get(),
                         ModBlocks.JADE_ORE.get(),
                         ModBlocks.RUBY_ORE.get(),
                         ModBlocks.SAPPHIRE_ORE.get(),
@@ -63,6 +102,8 @@ public class ModBlockTagGenerator extends BlockTagsProvider {
                         ModBlocks.DEEPSLATE_JADE_ORE.get(),
                         ModBlocks.DEEPSLATE_RUBY_ORE.get(),
                         ModBlocks.DEEPSLATE_SAPPHIRE_ORE.get(),
-                        ModBlocks.DEEPSLATE_TOPAZ_ORE.get());
+                        ModBlocks.DEEPSLATE_TOPAZ_ORE.get(),
+                        ModBlocks.AMALGAMITE_BLOCK.get(),
+                        ModBlocks.DEEPSLATE_AMALGAMITE_ORE.get());
     }
 }

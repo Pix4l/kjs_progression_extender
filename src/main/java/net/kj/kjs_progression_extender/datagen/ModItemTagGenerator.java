@@ -8,6 +8,7 @@ import net.minecraft.core.HolderLookup;
 import net.minecraft.data.PackOutput;
 import net.minecraft.data.tags.ItemTagsProvider;
 import net.minecraft.world.level.block.Block;
+import net.minecraftforge.common.Tags;
 import net.minecraftforge.common.data.ExistingFileHelper;
 import org.jetbrains.annotations.Nullable;
 
@@ -22,12 +23,50 @@ public class ModItemTagGenerator extends ItemTagsProvider {
     protected void addTags(HolderLookup.Provider pProvider) {
         this.tag(ModTags.Items.GEMSTONES)
                 .add(ModItems.JADE.get(),
+                        ModItems.EMPOWERED_JADE.get(),
+                        ModItems.HYPER_JADE.get(),
+                        ModItems.OMEGA_JADE.get(),
+
                         ModItems.RUBY.get(),
+                        ModItems.EMPOWERED_RUBY.get(),
+                        ModItems.HYPER_RUBY.get(),
+                        ModItems.OMEGA_RUBY.get(),
+
                         ModItems.SAPPHIRE.get(),
+                        ModItems.EMPOWERED_SAPPHIRE.get(),
+                        ModItems.HYPER_SAPPHIRE.get(),
+                        ModItems.OMEGA_SAPPHIRE.get(),
+
                         ModItems.TOPAZ.get(),
+                        ModItems.EMPOWERED_TOPAZ.get(),
+                        ModItems.HYPER_TOPAZ.get(),
+                        ModItems.OMEGA_TOPAZ.get(),
+
+                        ModItems.ELEMENTAL_SINGULARITY.get(),
+
                         ModBlocks.JADE_BLOCK.get().asItem(),
                         ModBlocks.RUBY_BLOCK.get().asItem(),
                         ModBlocks.SAPPHIRE_BLOCK.get().asItem(),
-                        ModBlocks.TOPAZ_BLOCK.get().asItem());
+                        ModBlocks.TOPAZ_BLOCK.get().asItem(),
+
+                        ModBlocks.EMPOWERED_JADE_BLOCK.get().asItem(),
+                        ModBlocks.EMPOWERED_RUBY_BLOCK.get().asItem(),
+                        ModBlocks.EMPOWERED_SAPPHIRE_BLOCK.get().asItem(),
+                        ModBlocks.EMPOWERED_TOPAZ_BLOCK.get().asItem(),
+
+                        ModBlocks.HYPER_JADE_BLOCK.get().asItem(),
+                        ModBlocks.HYPER_RUBY_BLOCK.get().asItem(),
+                        ModBlocks.HYPER_SAPPHIRE_BLOCK.get().asItem(),
+                        ModBlocks.HYPER_TOPAZ_BLOCK.get().asItem(),
+
+                        ModBlocks.OMEGA_JADE_BLOCK.get().asItem(),
+                        ModBlocks.OMEGA_RUBY_BLOCK.get().asItem(),
+                        ModBlocks.OMEGA_SAPPHIRE_BLOCK.get().asItem(),
+                        ModBlocks.OMEGA_TOPAZ_BLOCK.get().asItem());
+
+        this.tag(Tags.Items.INGOTS)
+                .add(ModItems.DRAKESTEEL_INGOT.get());
     }
+
+
 }

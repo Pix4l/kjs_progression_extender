@@ -1,0 +1,20 @@
+{
+  "type": "kjs_progression_extender:upgrade",
+  "category": "misc",
+  "pattern": [
+    "DDD",
+    " P ",
+    " D "
+  ],
+  "key": {
+    "D": {
+      "item": "kjs_progression_extender:drakesteel_ingot"
+    },
+    "P": {
+      "item": "minecraft:netherite_pickaxe"
+    }
+  },
+  "result": {
+    "item": "kjs_progression_extender:drakesteel_pickaxe"
+  }
+}

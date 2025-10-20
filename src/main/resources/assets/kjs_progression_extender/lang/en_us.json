@@ -1,15 +1,63 @@
 {
-  "item.kjs_progression_extender.jade": "Amethyst",
+  "item.kjs_progression_extender.jade": "Jade",
   "item.kjs_progression_extender.ruby": "Ruby",
   "item.kjs_progression_extender.sapphire": "Sapphire",
   "item.kjs_progression_extender.topaz": "Topaz",
 
+  "item.kjs_progression_extender.empowered_jade": "Empowered Jade",
+  "item.kjs_progression_extender.empowered_ruby": "Empowered Ruby",
+  "item.kjs_progression_extender.empowered_sapphire": "Empowered Sapphire",
+  "item.kjs_progression_extender.empowered_topaz": "Empowered Topaz",
+
+  "item.kjs_progression_extender.hyper_jade": "Hyper Jade",
+  "item.kjs_progression_extender.hyper_ruby": "Hyper Ruby",
+  "item.kjs_progression_extender.hyper_sapphire": "Hyper Sapphire",
+  "item.kjs_progression_extender.hyper_topaz": "Hyper Topaz",
+
+  "item.kjs_progression_extender.omega_jade": "Omega Jade",
+  "item.kjs_progression_extender.omega_ruby": "Omega Ruby",
+  "item.kjs_progression_extender.omega_sapphire": "Omega Sapphire",
+  "item.kjs_progression_extender.omega_topaz": "Omega Topaz",
+
+  "item.kjs_progression_extender.empowered_core": "Empowered Core",
+  "item.kjs_progression_extender.hyper_core": "Hyper Core",
+  "item.kjs_progression_extender.omega_core": "Omega Core",
+  "item.kjs_progression_extender.starforged_core": "Starforged Core",
+
+  "item.kjs_progression_extender.elemental_singularity": "Elemental Singularity",
+
+  "item.kjs_progression_extender.amalgamite": "Amalgamite",
+  "item.kjs_progression_extender.concentrated_amalgamite": "Concentrated Amalgamite",
+
+  "item.kjs_progression_extender.drake_scale": "Drake Scale",
+  "item.kjs_progression_extender.drake_hide": "Drake Hide",
+
+  "item.kjs_progression_extender.drakesteel_ingot": "Drakesteel Ingot",
+
+  "item.kjs_progression_extender.drakesteel_pickaxe": "Drakesteel Pickaxe",
+
   "item.kjs_progression_extender.test_item": "Test Item",
+
 
   "block.kjs_progression_extender.jade_block": "Block of Jade",
   "block.kjs_progression_extender.ruby_block": "Block of Ruby",
   "block.kjs_progression_extender.sapphire_block": "Block of Sapphire",
   "block.kjs_progression_extender.topaz_block": "Block of Topaz",
+
+  "block.kjs_progression_extender.empowered_jade_block": "Block of Empowered Jade",
+  "block.kjs_progression_extender.empowered_ruby_block": "Block of Empowered Ruby",
+  "block.kjs_progression_extender.empowered_sapphire_block": "Block of Empowered Sapphire",
+  "block.kjs_progression_extender.empowered_topaz_block": "Block of Empowered Topaz",
+
+  "block.kjs_progression_extender.hyper_jade_block": "Block of Hyper Jade",
+  "block.kjs_progression_extender.hyper_ruby_block": "Block of Hyper Ruby",
+  "block.kjs_progression_extender.hyper_sapphire_block": "Block of Hyper Sapphire",
+  "block.kjs_progression_extender.hyper_topaz_block": "Block of Hyper Topaz",
+
+  "block.kjs_progression_extender.omega_jade_block": "Block of Omega Jade",
+  "block.kjs_progression_extender.omega_ruby_block": "Block of Omega Ruby",
+  "block.kjs_progression_extender.omega_sapphire_block": "Block of Omega Sapphire",
+  "block.kjs_progression_extender.omega_topaz_block": "Block of Omega Topaz",
 
   "block.kjs_progression_extender.jade_ore": "Jade Ore",
   "block.kjs_progression_extender.ruby_ore": "Ruby Ore",
@@ -21,6 +69,8 @@
   "block.kjs_progression_extender.deepslate_sapphire_ore": "Deepslate Sapphire Ore",
   "block.kjs_progression_extender.deepslate_topaz_ore": "Deepslate Topaz Ore",
 
+  "block.kjs_progression_extender.deepslate_amalgamite_ore": "Deepslate Amalgamite Ore",
+  "block.kjs_progression_extender.amalgamite_block": "Block of Amalgamite",
 
-  "creativetab.kjs_progression_extender_materials_tab": "KJ's Progression Extender Materials"
+  "creativetab.kjs_progression_extender_tab": "KJ's Progression Extender"
 }

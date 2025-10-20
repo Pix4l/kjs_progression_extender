@@ -4,7 +4,7 @@ import com.mojang.logging.LogUtils;
 import net.kj.kjs_progression_extender.block.ModBlocks;
 import net.kj.kjs_progression_extender.item.ModCreativeModeTabs;
 import net.kj.kjs_progression_extender.item.ModItems;
-import net.minecraft.world.item.CreativeModeTabs;
+import net.kj.kjs_progression_extender.recipe.ModRecipes;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.BuildCreativeModeTabContentsEvent;
@@ -34,6 +34,7 @@ public class KJsProgressionExtender
 
         ModItems.register(modEventBus);
         ModBlocks.register(modEventBus);
+        ModRecipes.register(modEventBus);
 
         modEventBus.addListener(this::commonSetup);
 
