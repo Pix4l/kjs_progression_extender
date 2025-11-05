@@ -28,15 +28,43 @@
 
   "item.kjs_progression_extender.amalgamite": "Amalgamite",
   "item.kjs_progression_extender.concentrated_amalgamite": "Concentrated Amalgamite",
+  "item.kjs_progression_extender.elementite": "Elementite",
+  "item.kjs_progression_extender.meteorite_shard": "Meteorite Shard",
+  "item.kjs_progression_extender.cosmite_dust": "Cosmite Dust",
 
   "item.kjs_progression_extender.drake_scale": "Drake Scale",
   "item.kjs_progression_extender.drake_hide": "Drake Hide",
 
   "item.kjs_progression_extender.drakesteel_ingot": "Drakesteel Ingot",
+  "item.kjs_progression_extender.pyrolite_ingot": "Pyrolite Ingot",
+  "item.kjs_progression_extender.hydrolite_ingot": "Hydrolite Ingot",
+  "item.kjs_progression_extender.terralite_ingot": "Terralite Ingot",
+  "item.kjs_progression_extender.fulgurite_ingot": "Fulgurite Ingot",
+  "item.kjs_progression_extender.voidblight_ingot": "Voidblight Ingot",
+  "item.kjs_progression_extender.gleamstone_ingot": "Gleamstone Ingot",
+  "item.kjs_progression_extender.starcast_ingot": "Starcast Ingot",
 
   "item.kjs_progression_extender.drakesteel_pickaxe": "Drakesteel Pickaxe",
 
   "item.kjs_progression_extender.test_item": "Test Item",
+  "item.kjs_progression_extender.test_sword": "Test Sword",
+
+  "item.kjs_progression_extender.amalgamite_sword": "Amalgamite Sword",
+
+  "item.kjs_progression_extender.simple_handle": "Simple Handle",
+  "item.kjs_progression_extender.heavy_handle": "Heavy Handle",
+  "item.kjs_progression_extender.refined_handle": "Refined Handle",
+  "item.kjs_progression_extender.divine_handle": "Divine Handle",
+
+  "item.kjs_progression_extender.simple_blade": "Simple Blade",
+  "item.kjs_progression_extender.heavy_blade": "Heavy Blade",
+  "item.kjs_progression_extender.refined_blade": "Refined Blade",
+  "item.kjs_progression_extender.divine_blade": "Divine Blade",
+
+  "item.kjs_progression_extender.simple_plating": "Simple Plating",
+  "item.kjs_progression_extender.heavy_plating": "Heavy Plating",
+  "item.kjs_progression_extender.refined_plating": "Refined Plating",
+  "item.kjs_progression_extender.divine_plating": "Divine Plating",
 
 
   "block.kjs_progression_extender.jade_block": "Block of Jade",
@@ -70,7 +98,14 @@
   "block.kjs_progression_extender.deepslate_topaz_ore": "Deepslate Topaz Ore",
 
   "block.kjs_progression_extender.deepslate_amalgamite_ore": "Deepslate Amalgamite Ore",
+  "block.kjs_progression_extender.elementite_ore": "Elementite Ore",
+  "block.kjs_progression_extender.deepslate_elementite_ore": "Deepslate Elementite Ore",
+  "block.kjs_progression_extender.meteorite_shard_ore": "Meteorite Ore",
+  "block.kjs_progression_extender.cosmite_ore": "Cosmite Ore",
+
   "block.kjs_progression_extender.amalgamite_block": "Block of Amalgamite",
+
+  "block.kjs_progression_extender.jeweling_station": "Jeweling Station",
 
   "creativetab.kjs_progression_extender_tab": "KJ's Progression Extender"
 }

@@ -2,7 +2,6 @@ package net.kj.kjs_progression_extender.datagen;
 
 import net.kj.kjs_progression_extender.KJsProgressionExtender;
 import net.kj.kjs_progression_extender.block.ModBlocks;
-import net.kj.kjs_progression_extender.item.ModItems;
 import net.kj.kjs_progression_extender.util.ModTags;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.PackOutput;
@@ -48,7 +47,11 @@ public class ModBlockTagGenerator extends BlockTagsProvider {
                         ModBlocks.DEEPSLATE_RUBY_ORE.get(),
                         ModBlocks.DEEPSLATE_SAPPHIRE_ORE.get(),
                         ModBlocks.DEEPSLATE_TOPAZ_ORE.get(),
-                        ModBlocks.DEEPSLATE_AMALGAMITE_ORE.get());
+                        ModBlocks.DEEPSLATE_AMALGAMITE_ORE.get(),
+                        ModBlocks.ELEMENTITE_ORE.get(),
+                        ModBlocks.DEEPSLATE_ELEMENTITE_ORE.get(),
+                        ModBlocks.METEORITE_SHARD_ORE.get(),
+                        ModBlocks.COSMITE_ORE.get());
 
         this.tag(Tags.Blocks.NEEDS_NETHERITE_TOOL)
                 .add(ModBlocks.JADE_BLOCK.get(),
@@ -76,7 +79,18 @@ public class ModBlockTagGenerator extends BlockTagsProvider {
                         ModBlocks.DEEPSLATE_SAPPHIRE_ORE.get(),
                         ModBlocks.DEEPSLATE_TOPAZ_ORE.get(),
                         ModBlocks.DEEPSLATE_AMALGAMITE_ORE.get(),
-                        ModBlocks.AMALGAMITE_BLOCK.get());
+                        ModBlocks.AMALGAMITE_BLOCK.get(),
+                        ModBlocks.DEEPSLATE_AMALGAMITE_ORE.get());
+
+        this.tag(ModTags.Blocks.NEEDS_DRAKESTEEL_TOOL)
+                .add(ModBlocks.ELEMENTITE_ORE.get(),
+                        ModBlocks.DEEPSLATE_ELEMENTITE_ORE.get());
+
+        this.tag(ModTags.Blocks.NEEDS_ELEMENTAL_TOOL)
+                .add(ModBlocks.METEORITE_SHARD_ORE.get());
+
+        this.tag(ModTags.Blocks.NEEDS_LIGHT_TOOL)
+                .add(ModBlocks.COSMITE_ORE.get());
 
         this.tag(BlockTags.MINEABLE_WITH_PICKAXE)
                 .add(ModBlocks.JADE_BLOCK.get(),
@@ -104,6 +118,11 @@ public class ModBlockTagGenerator extends BlockTagsProvider {
                         ModBlocks.DEEPSLATE_SAPPHIRE_ORE.get(),
                         ModBlocks.DEEPSLATE_TOPAZ_ORE.get(),
                         ModBlocks.AMALGAMITE_BLOCK.get(),
-                        ModBlocks.DEEPSLATE_AMALGAMITE_ORE.get());
+                        ModBlocks.DEEPSLATE_AMALGAMITE_ORE.get(),
+                        ModBlocks.ELEMENTITE_ORE.get(),
+                        ModBlocks.DEEPSLATE_ELEMENTITE_ORE.get(),
+                        ModBlocks.METEORITE_SHARD_ORE.get(),
+                        ModBlocks.COSMITE_ORE.get());
+
     }
 }

@@ -10,14 +10,11 @@ import com.google.gson.JsonSyntaxException;
 import net.kj.kjs_progression_extender.KJsProgressionExtender;
 import net.minecraft.core.NonNullList;
 import net.minecraft.core.RegistryAccess;
-import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.GsonHelper;
 import net.minecraft.world.inventory.CraftingContainer;
-import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.CraftingBookCategory;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.item.crafting.RecipeSerializer;
@@ -186,17 +183,6 @@ public class UpgradeRecipe extends ShapedRecipe {
         return net.minecraftforge.common.crafting.CraftingHelper.getItemStack(pStackObject, true, true);
     }
 
-    public static Item itemFromJson(JsonObject pItemObject) {
-        String s = GsonHelper.getAsString(pItemObject, "item");
-        Item item = BuiltInRegistries.ITEM.getOptional(ResourceLocation.tryParse(s)).orElseThrow(() -> {
-            return new JsonSyntaxException("Unknown item '" + s + "'");
-        });
-        if (item == Items.AIR) {
-            throw new JsonSyntaxException("Empty ingredient not allowed here");
-        } else {
-            return item;
-        }
-    }
 
     public static class Serializer implements RecipeSerializer<UpgradeRecipe> {
         public static final UpgradeRecipe.Serializer INSTANCE = new UpgradeRecipe.Serializer();

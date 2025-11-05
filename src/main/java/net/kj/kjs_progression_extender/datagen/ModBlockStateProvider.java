@@ -5,6 +5,7 @@ import net.kj.kjs_progression_extender.block.ModBlocks;
 import net.minecraft.data.PackOutput;
 import net.minecraft.world.level.block.Block;
 import net.minecraftforge.client.model.generators.BlockStateProvider;
+import net.minecraftforge.client.model.generators.ModelFile;
 import net.minecraftforge.common.data.ExistingFileHelper;
 import net.minecraftforge.registries.RegistryObject;
 
@@ -48,6 +49,13 @@ public class ModBlockStateProvider extends BlockStateProvider {
         blockWithItem(ModBlocks.AMALGAMITE_BLOCK);
 
         blockWithItem(ModBlocks.DEEPSLATE_AMALGAMITE_ORE);
+        blockWithItem(ModBlocks.ELEMENTITE_ORE);
+        blockWithItem(ModBlocks.DEEPSLATE_ELEMENTITE_ORE);
+        blockWithItem(ModBlocks.METEORITE_SHARD_ORE);
+        blockWithItem(ModBlocks.COSMITE_ORE);
+
+        simpleBlockWithItem(ModBlocks.JEWELING_STATION.get(),
+                new ModelFile.UncheckedModelFile(modLoc("block/jeweling_station")));
     }
 
     private void blockWithItem(RegistryObject<Block> blockRegistryObject) {

@@ -60,6 +60,16 @@ public class ModBlockLootTables extends BlockLootSubProvider {
 
         this.add(ModBlocks.DEEPSLATE_AMALGAMITE_ORE.get(),
                 block -> createOreDrop(ModBlocks.DEEPSLATE_AMALGAMITE_ORE.get(), ModItems.AMALGAMITE.get()));
+        this.add(ModBlocks.ELEMENTITE_ORE.get(),
+                block -> createOreDrop(ModBlocks.ELEMENTITE_ORE.get(), ModItems.ELEMENTITE.get()));
+        this.add(ModBlocks.DEEPSLATE_ELEMENTITE_ORE.get(),
+                block -> createOreDrop(ModBlocks.DEEPSLATE_ELEMENTITE_ORE.get(), ModItems.ELEMENTITE.get()));
+        this.add(ModBlocks.METEORITE_SHARD_ORE.get(),
+                block -> createOreDrop(ModBlocks.METEORITE_SHARD_ORE.get(), ModItems.METEORITE_SHARD.get()));
+        this.add(ModBlocks.COSMITE_ORE.get(),
+                block -> createOreDrop(ModBlocks.COSMITE_ORE.get(), ModItems.COSMITE_DUST.get()));
+
+        this.dropSelf(ModBlocks.JEWELING_STATION.get());
     }
 
     @Override

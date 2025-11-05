@@ -2,9 +2,13 @@ package net.kj.kjs_progression_extender;
 
 import com.mojang.logging.LogUtils;
 import net.kj.kjs_progression_extender.block.ModBlocks;
+import net.kj.kjs_progression_extender.block.entity.ModBlockEntities;
 import net.kj.kjs_progression_extender.item.ModCreativeModeTabs;
 import net.kj.kjs_progression_extender.item.ModItems;
 import net.kj.kjs_progression_extender.recipe.ModRecipes;
+import net.kj.kjs_progression_extender.screen.JewelingStationScreen;
+import net.kj.kjs_progression_extender.screen.ModMenuTypes;
+import net.minecraft.client.gui.screens.MenuScreens;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.BuildCreativeModeTabContentsEvent;
@@ -35,10 +39,14 @@ public class KJsProgressionExtender
         ModItems.register(modEventBus);
         ModBlocks.register(modEventBus);
         ModRecipes.register(modEventBus);
+        ModBlockEntities.register(modEventBus);
+        ModMenuTypes.register(modEventBus);
 
         modEventBus.addListener(this::commonSetup);
 
         MinecraftForge.EVENT_BUS.register(this);
+
+
         modEventBus.addListener(this::addCreative);
 
 
@@ -65,7 +73,9 @@ public class KJsProgressionExtender
         @SubscribeEvent
         public static void onClientSetup(FMLClientSetupEvent event)
         {
-
+            MenuScreens.register(ModMenuTypes.JEWELING_STATION_MENU.get(), JewelingStationScreen::new);
         }
+
+
     }
 }

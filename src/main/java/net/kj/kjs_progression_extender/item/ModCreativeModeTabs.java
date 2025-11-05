@@ -2,6 +2,7 @@ package net.kj.kjs_progression_extender.item;
 
 import net.kj.kjs_progression_extender.KJsProgressionExtender;
 import net.kj.kjs_progression_extender.block.ModBlocks;
+import net.kj.kjs_progression_extender.block.entity.ModBlockEntities;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.item.CreativeModeTab;
@@ -75,10 +76,19 @@ public class ModCreativeModeTabs {
 
                         //Ores
                         output.accept(ModBlocks.DEEPSLATE_AMALGAMITE_ORE.get());
-
                         output.accept(ModItems.AMALGAMITE.get());
                         output.accept(ModItems.CONCENTRATED_AMALGAMITE.get());
                         output.accept(ModBlocks.AMALGAMITE_BLOCK.get());
+
+                        output.accept(ModBlocks.ELEMENTITE_ORE.get());
+                        output.accept(ModBlocks.DEEPSLATE_ELEMENTITE_ORE.get());
+                        output.accept(ModItems.ELEMENTITE.get());
+
+                        output.accept(ModBlocks.METEORITE_SHARD_ORE.get());
+                        output.accept(ModItems.METEORITE_SHARD.get());
+
+                        output.accept(ModBlocks.COSMITE_ORE.get());
+                        output.accept(ModItems.COSMITE_DUST.get());
 
                         //Ingot Crafting
                         output.accept(ModItems.DRAKE_SCALE.get());
@@ -86,15 +96,43 @@ public class ModCreativeModeTabs {
 
                         //Ingots
                         output.accept(ModItems.DRAKESTEEL_INGOT.get());
+                        output.accept(ModItems.PYROLITE_INGOT.get());
+                        output.accept(ModItems.HYDROLITE_INGOT.get());
+                        output.accept(ModItems.TERRALITE_INGOT.get());
+                        output.accept(ModItems.FULGURITE_INGOT.get());
+                        output.accept(ModItems.VOIDBLIGHT_INGOT.get());
+                        output.accept(ModItems.GLEAMSTONE_INGOT.get());
+                        output.accept(ModItems.STARCAST_INGOT.get());
+
+                        //Tool Components
+                        output.accept(ModItems.SIMPLE_HANDLE.get());
+                        output.accept(ModItems.HEAVY_HANDLE.get());
+                        output.accept(ModItems.REFINED_HANDLE.get());
+                        output.accept(ModItems.DIVINE_HANDLE.get());
+
+                        output.accept(ModItems.SIMPLE_BLADE.get());
+                        output.accept(ModItems.HEAVY_BLADE.get());
+                        output.accept(ModItems.REFINED_BLADE.get());
+                        output.accept(ModItems.DIVINE_BLADE.get());
+
+                        output.accept(ModItems.SIMPLE_PLATING.get());
+                        output.accept(ModItems.HEAVY_PLATING.get());
+                        output.accept(ModItems.REFINED_PLATING.get());
+                        output.accept(ModItems.DIVINE_PLATING.get());
 
                         //Tools
                         output.accept(ModItems.DRAKESTEEL_PICKAXE.get());
+                        output.accept(ModItems.TEST_SWORD.get());
+                        output.accept(ModItems.AMALGAMITE_SWORD.get());
 
                         //Misc
                         output.accept(ModItems.EMPOWERED_CORE.get());
                         output.accept(ModItems.HYPER_CORE.get());
                         output.accept(ModItems.OMEGA_CORE.get());
                         output.accept(ModItems.STARFORGED_CORE.get());
+
+                        output.accept(ModBlocks.JEWELING_STATION.get());
+
                         output.accept(ModItems.TEST_ITEM.get());
 
 
