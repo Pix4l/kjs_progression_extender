@@ -125,6 +125,12 @@ public class ModCreativeModeTabs {
                         output.accept(ModItems.TEST_SWORD.get());
                         output.accept(ModItems.AMALGAMITE_SWORD.get());
 
+                        //ARMOR
+                        output.accept(ModItems.AMALGAMITE_HELMET.get());
+                        output.accept(ModItems.AMALGAMITE_CHESTPLATE.get());
+                        output.accept(ModItems.AMALGAMITE_LEGGINGS.get());
+                        output.accept(ModItems.AMALGAMITE_BOOTS.get());
+
                         //Misc
                         output.accept(ModItems.EMPOWERED_CORE.get());
                         output.accept(ModItems.HYPER_CORE.get());

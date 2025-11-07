@@ -51,6 +51,11 @@
 
   "item.kjs_progression_extender.amalgamite_sword": "Amalgamite Sword",
 
+  "item.kjs_progression_extender.amalgamite_helmet": "Amalgamite Helmet",
+  "item.kjs_progression_extender.amalgamite_chestplate": "Amalgamite Chestplate",
+  "item.kjs_progression_extender.amalgamite_leggings": "Amalgamite Leggings",
+  "item.kjs_progression_extender.amalgamite_boots": "Amalgamite Boots",
+
   "item.kjs_progression_extender.simple_handle": "Simple Handle",
   "item.kjs_progression_extender.heavy_handle": "Heavy Handle",
   "item.kjs_progression_extender.refined_handle": "Refined Handle",

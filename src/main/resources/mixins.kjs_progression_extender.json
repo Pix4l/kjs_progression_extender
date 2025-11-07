@@ -1,0 +1,12 @@
+{
+  "required": true,
+  "compatibilityLevel": "JAVA_17",
+  "package": "net.kj.kjs_progression_extender.mixin",
+  "refmap": "kjs_progression_extender.mixin-refmap.json",
+  "injectors": {
+    "defaultRequire": 1
+  },
+  "client": [
+    "ModHealthDisplayMixin"
+  ]
+}

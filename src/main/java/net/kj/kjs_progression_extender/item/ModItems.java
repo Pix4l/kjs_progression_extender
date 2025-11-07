@@ -1,9 +1,8 @@
 package net.kj.kjs_progression_extender.item;
 
 import net.kj.kjs_progression_extender.KJsProgressionExtender;
-import net.kj.kjs_progression_extender.item.custom.ModToolTiers;
-import net.kj.kjs_progression_extender.item.custom.ModWeaponItem;
-import net.kj.kjs_progression_extender.item.custom.TestItem;
+import net.kj.kjs_progression_extender.item.custom.*;
+import net.minecraft.world.item.ArmorItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.PickaxeItem;
 import net.minecraftforge.eventbus.api.IEventBus;
@@ -137,13 +136,21 @@ public class ModItems {
 
     //TOOLS
     public static final RegistryObject<Item> AMALGAMITE_SWORD = ITEMS.register("amalgamite_sword",
-            () -> new ModWeaponItem(ModToolTiers.DRAKESTEEL, 10, -2.4f, new Item.Properties().rarity(ModRarities.KJUNCOMMON), 50, 50, 10, 0, 0, 13));
+            () -> new ModWeaponItem(ModToolTiers.DRAKESTEEL, 10, -2.4f, new Item.Properties().rarity(ModRarities.KJUNCOMMON), 50, 50, 10, 0, 0, 13, 0, 0, 0, 0, 0, 0));
     public static final RegistryObject<Item> DRAKESTEEL_PICKAXE = ITEMS.register("drakesteel_pickaxe",
             () -> new PickaxeItem(ModToolTiers.DRAKESTEEL, 1, -2.8f, new Item.Properties().rarity(ModRarities.KJRARE)));
     public static final RegistryObject<Item> TEST_SWORD = ITEMS.register("test_sword",
-            () -> new ModWeaponItem(ModToolTiers.DRAKESTEEL, 500, -2.4f, new Item.Properties().rarity(ModRarities.KJRARE), 500, 350, 30, 300, 5, 30));
+            () -> new ModWeaponItem(ModToolTiers.DRAKESTEEL, 500, -2.4f, new Item.Properties().rarity(ModRarities.KJRARE), 500, 350, 30, 300, 5, 30, 0, 0, 0, 0, 0, 0));
 
-
+    //ARMOR
+    public static final RegistryObject<Item> AMALGAMITE_HELMET = ITEMS.register("amalgamite_helmet",
+            () -> new ModArmorItem(ModArmorMaterials.AMALGAMITE, ArmorItem.Type.HELMET, new Item.Properties().rarity(ModRarities.KJUNCOMMON), 0, 0, 0, 0, 0, 0, 5, 1, 5, 0, 20, 0));
+    public static final RegistryObject<Item> AMALGAMITE_CHESTPLATE = ITEMS.register("amalgamite_chestplate",
+            () -> new ModArmorItem(ModArmorMaterials.AMALGAMITE, ArmorItem.Type.CHESTPLATE, new Item.Properties().rarity(ModRarities.KJUNCOMMON), 0, 0, 0, 0, 0, 0, 20, 1, 5, 0, 40, 0));
+    public static final RegistryObject<Item> AMALGAMITE_LEGGINGS = ITEMS.register("amalgamite_leggings",
+            () -> new ModArmorItem(ModArmorMaterials.AMALGAMITE, ArmorItem.Type.LEGGINGS, new Item.Properties().rarity(ModRarities.KJUNCOMMON), 0, 0, 0, 0, 0, 0, 15, 1, 5, 0, 30, 0));
+    public static final RegistryObject<Item> AMALGAMITE_BOOTS = ITEMS.register("amalgamite_boots",
+            () -> new ModArmorItem(ModArmorMaterials.AMALGAMITE, ArmorItem.Type.BOOTS, new Item.Properties().rarity(ModRarities.KJUNCOMMON), 0, 0, 0, 0, 0, 0, 10, 1, 5, 0, 20, 0));
 
     public static final RegistryObject<Item> TEST_ITEM = ITEMS.register("test_item",
             () -> new TestItem(new Item.Properties()));

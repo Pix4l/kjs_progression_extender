@@ -7,6 +7,7 @@ import net.kj.kjs_progression_extender.util.ModTags;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.PackOutput;
 import net.minecraft.data.tags.ItemTagsProvider;
+import net.minecraft.tags.ItemTags;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.block.Block;
 import net.minecraftforge.common.Tags;
@@ -166,9 +167,19 @@ public class ModItemTagGenerator extends ItemTagsProvider {
                         ModItems.GLEAMSTONE_INGOT.get(),
                         ModItems.STARCAST_INGOT.get());
 
+        this.tag(ItemTags.TRIMMABLE_ARMOR).add(
+                ModItems.AMALGAMITE_HELMET.get(),
+                ModItems.AMALGAMITE_CHESTPLATE.get(),
+                ModItems.AMALGAMITE_LEGGINGS.get(),
+                ModItems.AMALGAMITE_BOOTS.get());
+
         this.tag(ModTags.Items.IS_GEMMABLE)
                 .add(ModItems.TEST_SWORD.get(),
-                        ModItems.AMALGAMITE_SWORD.get());
+                        ModItems.AMALGAMITE_SWORD.get(),
+                        ModItems.AMALGAMITE_HELMET.get(),
+                        ModItems.AMALGAMITE_CHESTPLATE.get(),
+                        ModItems.AMALGAMITE_LEGGINGS.get(),
+                        ModItems.AMALGAMITE_BOOTS.get());
     }
 
 

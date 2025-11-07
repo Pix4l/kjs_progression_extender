@@ -1,6 +1,7 @@
 package net.kj.kjs_progression_extender.util;
 
 import net.kj.kjs_progression_extender.KJsProgressionExtender;
+import net.kj.kjs_progression_extender.item.custom.ModArmorItem;
 import net.kj.kjs_progression_extender.item.custom.ModWeaponItem;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
@@ -24,11 +25,37 @@ public class AttackDamageCalculation {
             CompoundTag targetTag = target.getPersistentData();
             CompoundTag playerItemTag = player.getMainHandItem().getTag();
 
+            placeNbt(targetTag);
+            int[] resistances = targetTag.getIntArray("resistances");
+
             double base = event.getAmount();
 
-            if (!(playerItemTag == null) && player.getMainHandItem().getItem() instanceof ModWeaponItem weaponItem) {
-                placeNbt(targetTag, playerItemTag);
+            double critDamage = 1;
+            double critChance = 0.1;
+            double strengthModifier = 1;
+            double elementalDamageModifier = 1;
+            double[] elementalDamage = {0,0,0,0};
+            double lifeSteal = 0;
+            double cooldown = 0;
+            double cooldownReduction = 0;
 
+            //Apply Armor Bonuses
+            for (int i = 0; i < 4; i++) {
+                if (player.getInventory().getArmor(i).getItem() instanceof ModArmorItem armorItem) {
+                    int[] gemstones = player.getInventory().getArmor(i).getTag().getIntArray("gemstones");
+
+                    critDamage += getACritDamage(armorItem, gemstones);
+                    critChance += getACritChance(armorItem, gemstones);
+                    strengthModifier += getAStrengthModifier(armorItem, gemstones);
+                    elementalDamageModifier += getAElementalDamageModifier(armorItem, gemstones);
+                    lifeSteal += getALifeSteal(armorItem, gemstones);
+                    cooldownReduction += getAAttackSpeed(armorItem, gemstones);
+                    elementalDamage = calcAGemElementalDamage(armorItem, elementalDamage, resistances, gemstones);
+                }
+            }
+
+            //Apply Weapon Bonuses
+            if (!(playerItemTag == null) && player.getMainHandItem().getItem() instanceof ModWeaponItem weaponItem) {
                 int[] cooldowns = player.getMainHandItem().getTag().getIntArray("cooldowns");
 
                 if (cooldowns[0] > 0) {
@@ -38,62 +65,121 @@ public class AttackDamageCalculation {
 
                 base = weaponItem.getAttackDamage();
 
-                int[] resistances = targetTag.getIntArray("resistances");
                 int[] gemstones = playerItemTag.getIntArray("gemstones");
-                double[] elementalDamage = calcGemElementalDamage(weaponItem, resistances, gemstones);
 
-                double critDamage = getCritDamage(weaponItem, gemstones);
-                double critChance = getCritChance(weaponItem, gemstones);
-                double strengthModifier = getStrengthModifier(weaponItem, gemstones);
-                double elementalDamageModifier = getElementalDamageModifier(weaponItem, gemstones);
-                double lifeSteal = getLifeSteal(weaponItem, gemstones);
-                double finalDamage = 0;
+                critDamage += getCritDamage(weaponItem, gemstones);
+                critChance += getCritChance(weaponItem, gemstones);
+                strengthModifier += getStrengthModifier(weaponItem, gemstones);
+                elementalDamageModifier += getElementalDamageModifier(weaponItem, gemstones);
+                lifeSteal += getLifeSteal(weaponItem, gemstones);
+                cooldownReduction += getAttackSpeed(weaponItem, gemstones);
+                elementalDamage = calcGemElementalDamage(weaponItem, elementalDamage, resistances, gemstones);
 
-                finalDamage = base;
-
-                if (Math.random() < critChance) {
-                    finalDamage *= critDamage;
-                }
-
-                finalDamage *= strengthModifier;
-
-                spawnDamageText(target, finalDamage, elementalDamage, elementalDamageModifier);
-
-                for (int i = 0; i < 4; i++) {
-                    finalDamage += elementalDamage[i] * elementalDamageModifier;
-                }
-
-                player.heal((float) (finalDamage * lifeSteal));
-
-                cooldowns[0] = ((int) getAttackSpeed(weaponItem, gemstones));
-
-                event.setAmount(0);
-                return;
+                cooldown = Math.floor(weaponItem.getAttackSpeed() * Math.pow(Math.E, cooldownReduction / -84));
+                cooldowns[0] = ((int) cooldown);
             }
 
-            spawnDamageText(target, base, new double[] {0,0,0,0}, 0);
+            //Calculations
+            base *= strengthModifier;
+
+            if (Math.random() < critChance) {
+                base *= critDamage;
+            }
+
+            spawnDamageText(target, base, elementalDamage, elementalDamageModifier);
+
+            for (int i = 0; i < 4; i++) {
+                base += elementalDamage[i] * elementalDamageModifier;
+            }
+
+            double healAmount = lifeSteal * base;
+            player.heal(((float) healAmount));
+
+            event.setAmount(0);
         }
     }
 
-    private static void placeNbt (CompoundTag targetTag, CompoundTag playerTag) {
+    private static void placeNbt (CompoundTag targetTag) {
         if (!targetTag.contains("resistances")) {
             int[] resistances = {0,0,0,0};
             targetTag.putIntArray("resistances", resistances);
         }
-
-        if (!playerTag.contains("gemstones")) {
-            int[] gems = {0,0,0,0,0,0};
-            playerTag.putIntArray("gemstones", gems);
-        }
-
-        if (!playerTag.contains("cooldowns")) {
-            int[] gems = {0,0};
-            playerTag.putIntArray("cooldowns", gems);
-        }
     }
 
-    private static double[] calcGemElementalDamage (ModWeaponItem weaponItem, int[] resistances, int[] gemstones) {
-        double[] elementalDamage = {0,0,0,0};
+    private static double[] calcGemElementalDamage (ModWeaponItem weaponItem, double[] elementalDamage, int[] resistances, int[] gemstones) {
+        for (int i = 0; i < 4; i++) {
+            if (gemstones[1] == i && gemstones[0] != 9) {
+                elementalDamage[i] += gemstones[0];
+            }
+            if (gemstones[4] == i && gemstones[0] != 9) {
+                elementalDamage[i] += gemstones[3];
+            }
+        }
+
+        if (gemstones[0] == 9) {
+            for (int i = 0; i < 4; i++) {
+                elementalDamage[i] += 3;
+            }
+        }
+        if (gemstones[3] == 9) {
+            for (int i = 0; i < 4; i++) {
+                elementalDamage[i] += 3;
+            }
+        }
+
+        for (int i = 0; i < 4; i++) {
+            elementalDamage[i] *= (1 - (double) resistances[i] / 100);
+        }
+        return elementalDamage;
+    }
+
+    private static double getStrengthModifier(ModWeaponItem weaponItem, int[] gemstones) {
+        double weaponBuff = (double) weaponItem.getStrength() / 100;
+
+        double gemstoneBuff = ((double) weaponItem.getGemstoneStrengthModifier(gemstones)) / 100;
+
+        return weaponBuff + gemstoneBuff;
+    }
+
+    private static double getCritChance (ModWeaponItem weaponItem, int[] gemstones) {
+        double weaponBuff = (double) weaponItem.getCritChance() / 100;
+
+        double gemstoneBuff = ((double) weaponItem.getGemstoneCritChanceModifier(gemstones)) / 100;
+
+        return gemstoneBuff + weaponBuff;
+    }
+
+    private static double getCritDamage (ModWeaponItem weaponItem, int[] gemstones) {
+        double weaponBuff = (double) weaponItem.getCritDamage() / 100;
+
+        double gemstoneBuff = ((double) weaponItem.getGemstoneCritDamageModifier(gemstones)) / 100;
+
+        return gemstoneBuff + weaponBuff;
+    }
+
+    private static double getElementalDamageModifier (ModWeaponItem weaponItem, int[] gemstones) {
+        double weaponBuff = (double) weaponItem.getElementalDamage() / 100;
+
+        double gemstoneBuff = ((double) weaponItem.getGemstoneElementalDamageModifier(gemstones)) / 100;
+
+        return gemstoneBuff + weaponBuff;
+    }
+
+    private static double getLifeSteal (ModWeaponItem weaponItem, int[] gemstones) {
+        double weaponBuff = (double) weaponItem.getLifeSteal() / 100;
+
+        double gemstoneBuff = ((double) weaponItem.getGemstoneLifeStealModifier(gemstones)) / 100;
+
+        return weaponBuff + gemstoneBuff;
+    }
+
+    private static double getAttackSpeed (ModWeaponItem weaponItem, int[] gemstones) {
+        double gemstoneBuff = ((double) weaponItem.getGemstoneAttackSpeedModifier(gemstones));
+
+        return gemstoneBuff;
+    }
+
+    private static double[] calcAGemElementalDamage (ModArmorItem armorItem, double[] elementalDamage, int[] resistances, int[] gemstones) {
         for (int i = 0; i < 4; i++) {
             if (gemstones[1] == i && gemstones[0] != 9) {
                 elementalDamage[i] += gemstones[0];
@@ -121,52 +207,52 @@ public class AttackDamageCalculation {
         return elementalDamage;
     }
 
-    private static double getStrengthModifier(ModWeaponItem weaponItem, int[] gemstones) {
-        double weaponBuff = (double) weaponItem.getStrength() / 100;
+    private static double getAStrengthModifier(ModArmorItem armorItem, int[] gemstones) {
+        double armorBuff = (double) armorItem.getStrength() / 100;
 
-        double gemstoneBuff = ((double) weaponItem.getGemstoneStrengthModifier(gemstones)) / 100;
+        double gemstoneBuff = ((double) armorItem.getGemstoneStrengthModifier(gemstones)) / 100;
 
-        return 1 + weaponBuff + gemstoneBuff;
+        return armorBuff + gemstoneBuff;
     }
 
-    private static double getCritChance (ModWeaponItem weaponItem, int[] gemstones) {
-        double weaponBuff = (double) weaponItem.getCritChance() / 100;
+    private static double getACritChance (ModArmorItem armorItem, int[] gemstones) {
+        double armorBuff = (double) armorItem.getCritChance() / 100;
 
-        double gemstoneBuff = ((double) weaponItem.getGemstoneCritChanceModifier(gemstones)) / 100;
+        double gemstoneBuff = ((double) armorItem.getGemstoneCritChanceModifier(gemstones)) / 100;
 
-        return gemstoneBuff + weaponBuff + 0.1;
+        return gemstoneBuff + armorBuff;
     }
 
-    private static double getCritDamage (ModWeaponItem weaponItem, int[] gemstones) {
-        double weaponBuff = (double) weaponItem.getCritDamage() / 100;
+    private static double getACritDamage (ModArmorItem armorItem, int[] gemstones) {
+        double armorBuff = (double) armorItem.getCritDamage() / 100;
 
-        double gemstoneBuff = ((double) weaponItem.getGemstoneCritDamageModifier(gemstones)) / 100;
+        double gemstoneBuff = ((double) armorItem.getGemstoneCritDamageModifier(gemstones)) / 100;
 
-        return 1 + gemstoneBuff + weaponBuff;
+        return gemstoneBuff + armorBuff;
     }
 
-    private static double getElementalDamageModifier (ModWeaponItem weaponItem, int[] gemstones) {
-        double weaponBuff = (double) weaponItem.getElementalDamage() / 100;
+    private static double getAElementalDamageModifier (ModArmorItem armorItem, int[] gemstones) {
+        double armorBuff = (double) armorItem.getElementalDamage() / 100;
 
-        double gemstoneBuff = ((double) weaponItem.getGemstoneElementalDamageModifier(gemstones)) / 100;
+        double gemstoneBuff = ((double) armorItem.getGemstoneElementalDamageModifier(gemstones)) / 100;
 
-        return 1 + gemstoneBuff + weaponBuff;
+        return gemstoneBuff + armorBuff;
     }
 
-    private static double getLifeSteal (ModWeaponItem weaponItem, int[] gemstones) {
-        double weaponBuff = (double) weaponItem.getLifeSteal() / 100;
+    private static double getALifeSteal (ModArmorItem armorItem, int[] gemstones) {
+        double armorBuff = (double) armorItem.getLifeSteal() / 100;
 
-        double gemstoneBuff = ((double) weaponItem.getGemstoneLifeStealModifier(gemstones)) / 100;
+        double gemstoneBuff = ((double) armorItem.getGemstoneLifeStealModifier(gemstones)) / 100;
 
-        return weaponBuff + gemstoneBuff;
+        return armorBuff + gemstoneBuff;
     }
 
-    private static double getAttackSpeed (ModWeaponItem weaponItem, int[] gemstones) {
-        double weaponBuff = ((double) weaponItem.getAttackSpeed());
+    private static double getAAttackSpeed (ModArmorItem armorItem, int[] gemstones) {
+        double armorBuff = ((double) armorItem.getAttackSpeed());
 
-        double gemstoneBuff = ((double) weaponItem.getGemstoneAttackSpeedModifier(gemstones));
+        double gemstoneBuff = ((double) armorItem.getGemstoneAttackSpeedModifier(gemstones));
 
-        return Math.floor(weaponBuff * Math.pow(Math.E, gemstoneBuff / -84));
+        return armorBuff + gemstoneBuff;
     }
 
     private static void spawnDamageText(Entity target, double damage, double[] elementalDamage, double elementalDamageModifier) {
