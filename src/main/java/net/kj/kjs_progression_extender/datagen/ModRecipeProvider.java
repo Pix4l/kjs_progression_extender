@@ -84,6 +84,7 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
                 .save(pWriter);
 
         blockCraft(pWriter, ModItems.DRAKE_SCALE.get(), ModItems.DRAKE_HIDE.get(), ModItems.AMALGAMITE.get());
+
         ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, ModItems.DRAKESTEEL_INGOT.get())
                 .requires(ModItems.DRAKE_HIDE.get(), 4)
                 .requires(Items.GOLD_BLOCK, 1)
@@ -93,6 +94,9 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
 
         blockCraft(pWriter, ModItems.AMALGAMITE.get(), ModItems.CONCENTRATED_AMALGAMITE.get(), ModItems.AMALGAMITE.get());
         blockCraft(pWriter, ModItems.CONCENTRATED_AMALGAMITE.get(), ModBlocks.AMALGAMITE_BLOCK.get(), ModItems.AMALGAMITE.get());
+
+        blockCraft(pWriter, ModItems.COSMITE_DUST.get(), ModItems.COSMITE.get(), ModItems.COSMITE_DUST.get());
+        blockCraft(pWriter, ModItems.COSMITE.get(), ModBlocks.COSMITE_BLOCK.get(), ModItems.COSMITE.get());
 
         simpleToolComponentCraft(pWriter, Items.STICK, ModItems.SIMPLE_HANDLE.get());
         simpleToolComponentCraft(pWriter, Items.WOODEN_SWORD, ModItems.SIMPLE_BLADE.get());
@@ -106,6 +110,10 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
         refinedToolComponentCraft(pWriter, ModItems.HEAVY_BLADE.get(), ModItems.REFINED_BLADE.get());
         refinedToolComponentCraft(pWriter, ModItems.HEAVY_PLATING.get(), ModItems.REFINED_PLATING.get());
 
+        divineToolComponentCraft(pWriter, ModItems.REFINED_HANDLE.get(), ModItems.DIVINE_HANDLE.get());
+        divineToolComponentCraft(pWriter, ModItems.REFINED_BLADE.get(), ModItems.DIVINE_BLADE.get());
+        divineToolComponentCraft(pWriter, ModItems.REFINED_PLATING.get(), ModItems.DIVINE_PLATING.get());
+
 
         UpgradeRecipeBuilder.shaped(RecipeCategory.MISC, ModItems.DRAKESTEEL_PICKAXE.get())
                 .pattern("DDD")
@@ -113,6 +121,36 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
                 .pattern(" S ")
                 .define('D', ModItems.DRAKESTEEL_INGOT.get())
                 .define('P', Items.NETHERITE_PICKAXE)
+                .define('S', ModItems.SIMPLE_HANDLE.get())
+                .unlockedBy(getHasName(ModItems.DRAKE_SCALE.get()), has(ModItems.DRAKE_SCALE.get()))
+                .save(pWriter);
+
+        UpgradeRecipeBuilder.shaped(RecipeCategory.MISC, ModItems.DRAKESTEEL_AXE.get())
+                .pattern("DD ")
+                .pattern("DA ")
+                .pattern(" S ")
+                .define('D', ModItems.DRAKESTEEL_INGOT.get())
+                .define('A', Items.NETHERITE_AXE)
+                .define('S', ModItems.SIMPLE_HANDLE.get())
+                .unlockedBy(getHasName(ModItems.DRAKE_SCALE.get()), has(ModItems.DRAKE_SCALE.get()))
+                .save(pWriter);
+
+        UpgradeRecipeBuilder.shaped(RecipeCategory.MISC, ModItems.DRAKESTEEL_HOE.get())
+                .pattern("DD ")
+                .pattern(" H ")
+                .pattern(" S ")
+                .define('D', ModItems.DRAKESTEEL_INGOT.get())
+                .define('H', Items.NETHERITE_HOE)
+                .define('S', ModItems.SIMPLE_HANDLE.get())
+                .unlockedBy(getHasName(ModItems.DRAKE_SCALE.get()), has(ModItems.DRAKE_SCALE.get()))
+                .save(pWriter);
+
+        UpgradeRecipeBuilder.shaped(RecipeCategory.MISC, ModItems.DRAKESTEEL_SHOVEL.get())
+                .pattern(" D ")
+                .pattern(" A ")
+                .pattern(" S ")
+                .define('D', ModItems.DRAKESTEEL_INGOT.get())
+                .define('A', Items.NETHERITE_SHOVEL)
                 .define('S', ModItems.SIMPLE_HANDLE.get())
                 .unlockedBy(getHasName(ModItems.DRAKE_SCALE.get()), has(ModItems.DRAKE_SCALE.get()))
                 .save(pWriter);
@@ -182,6 +220,19 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
                 .pattern(" S ")
                 .define('S', ModItems.METEORITE_SHARD.get())
                 .define('A', ModBlocks.AMALGAMITE_BLOCK.get())
+                .define('#', ingredient)
+                .unlockedBy(getHasName(ModItems.METEORITE_SHARD.get()), has(ModItems.METEORITE_SHARD.get()))
+                .save(pWriter);
+    }
+
+    protected static void divineToolComponentCraft(Consumer<FinishedRecipe> pWriter, ItemLike ingredient, ItemLike result) {
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, result)
+                .pattern(" C ")
+                .pattern("L#D")
+                .pattern(" C ")
+                .define('L', ModItems.LIGHT_ESSENCE.get())
+                .define('D', ModItems.DARK_ESSENCE.get())
+                .define('C', ModBlocks.COSMITE_BLOCK.get())
                 .define('#', ingredient)
                 .unlockedBy(getHasName(ModItems.METEORITE_SHARD.get()), has(ModItems.METEORITE_SHARD.get()))
                 .save(pWriter);

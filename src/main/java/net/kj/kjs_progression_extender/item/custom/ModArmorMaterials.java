@@ -14,13 +14,13 @@ import java.util.function.Supplier;
 public enum ModArmorMaterials implements ArmorMaterial {
     AMALGAMITE("amalgamite", 26, new int[]{5, 7, 5, 4}, 20, SoundEvents.ARMOR_EQUIP_GOLD, 1f, 0f, () -> Ingredient.of(ModItems.CONCENTRATED_AMALGAMITE.get())),
     DRAKESTEEL("drakesteel", 42, new int[]{5, 7, 5, 4}, 20, SoundEvents.ARMOR_EQUIP_GOLD, 1f, 0f, () -> Ingredient.of(ModItems.DRAKE_HIDE.get())),
-    TERRALITE("terralite", 56, new int[]{5, 7, 5, 4}, 20, SoundEvents.ARMOR_EQUIP_GOLD, 1f, 0f, () -> Ingredient.of(ModItems.CONCENTRATED_AMALGAMITE.get())),
-    PYROLITE("pyrolite", 56, new int[]{5, 7, 5, 4}, 20, SoundEvents.ARMOR_EQUIP_GOLD, 1f, 0f, () -> Ingredient.of(ModItems.CONCENTRATED_AMALGAMITE.get())),
-    HYDROLITE("hydrolite", 56, new int[]{5, 7, 5, 4}, 20, SoundEvents.ARMOR_EQUIP_GOLD, 1f, 0f, () -> Ingredient.of(ModItems.CONCENTRATED_AMALGAMITE.get())),
-    FULGURITE("fulgurite", 56, new int[]{5, 7, 5, 4}, 20, SoundEvents.ARMOR_EQUIP_GOLD, 1f, 0f, () -> Ingredient.of(ModItems.CONCENTRATED_AMALGAMITE.get())),
-    VOIDBLIGHT("voidblight", 61, new int[]{5, 7, 5, 4}, 25, SoundEvents.ARMOR_EQUIP_GOLD, 1f, 0f, () -> Ingredient.of(ModItems.CONCENTRATED_AMALGAMITE.get())),
-    GLEAMSTONE("gleamstone", 61, new int[]{5, 7, 5, 4}, 25, SoundEvents.ARMOR_EQUIP_GOLD, 1f, 0f, () -> Ingredient.of(ModItems.CONCENTRATED_AMALGAMITE.get())),
-    STARCAST("starcast", 75, new int[]{5, 7, 5, 4}, 30, SoundEvents.ARMOR_EQUIP_GOLD, 1f, 0f, () -> Ingredient.of(ModItems.CONCENTRATED_AMALGAMITE.get()));
+    TERRALITE("terralite", 56, new int[]{5, 7, 5, 4}, 20, SoundEvents.ARMOR_EQUIP_GOLD, 1f, 0f, () -> Ingredient.of(ModItems.EARTH_ESSENCE.get())),
+    PYROLITE("pyrolite", 56, new int[]{5, 7, 5, 4}, 20, SoundEvents.ARMOR_EQUIP_GOLD, 1f, 0f, () -> Ingredient.of(ModItems.FIRE_ESSENCE.get())),
+    HYDROLITE("hydrolite", 56, new int[]{5, 7, 5, 4}, 20, SoundEvents.ARMOR_EQUIP_GOLD, 1f, 0f, () -> Ingredient.of(ModItems.WATER_ESSENCE.get())),
+    FULGURITE("fulgurite", 56, new int[]{5, 7, 5, 4}, 20, SoundEvents.ARMOR_EQUIP_GOLD, 1f, 0f, () -> Ingredient.of(ModItems.LIGHTNING_ESSENCE.get())),
+    VOIDBLIGHT("voidblight", 61, new int[]{5, 7, 5, 4}, 25, SoundEvents.ARMOR_EQUIP_GOLD, 1f, 0f, () -> Ingredient.of(ModItems.DARK_ESSENCE.get())),
+    GLEAMSTONE("gleamstone", 61, new int[]{5, 7, 5, 4}, 25, SoundEvents.ARMOR_EQUIP_GOLD, 1f, 0f, () -> Ingredient.of(ModItems.LIGHT_ESSENCE.get())),
+    STARCAST("starcast", 75, new int[]{5, 7, 5, 4}, 30, SoundEvents.ARMOR_EQUIP_GOLD, 1f, 0f, () -> Ingredient.of(ModItems.COSMITE.get()));
 
     private final String name;
     private final int durabilityMultiplier;

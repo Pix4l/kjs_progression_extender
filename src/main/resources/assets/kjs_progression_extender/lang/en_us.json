@@ -31,9 +31,17 @@
   "item.kjs_progression_extender.elementite": "Elementite",
   "item.kjs_progression_extender.meteorite_shard": "Meteorite Shard",
   "item.kjs_progression_extender.cosmite_dust": "Cosmite Dust",
+  "item.kjs_progression_extender.cosmite": "Cosmite",
 
   "item.kjs_progression_extender.drake_scale": "Drake Scale",
   "item.kjs_progression_extender.drake_hide": "Drake Hide",
+
+  "item.kjs_progression_extender.earth_essence": "Earth Essence",
+  "item.kjs_progression_extender.fire_essence": "Fire Essence",
+  "item.kjs_progression_extender.water_essence": "Water Essence",
+  "item.kjs_progression_extender.lightning_essence": "Lightning Essence",
+  "item.kjs_progression_extender.light_essence": "Light Essence",
+  "item.kjs_progression_extender.dark_essence": "Dark Essence",
 
   "item.kjs_progression_extender.drakesteel_ingot": "Drakesteel Ingot",
   "item.kjs_progression_extender.pyrolite_ingot": "Pyrolite Ingot",
@@ -45,6 +53,9 @@
   "item.kjs_progression_extender.starcast_ingot": "Starcast Ingot",
 
   "item.kjs_progression_extender.drakesteel_pickaxe": "Drakesteel Pickaxe",
+  "item.kjs_progression_extender.drakesteel_axe": "Drakesteel Axe",
+  "item.kjs_progression_extender.drakesteel_shovel": "Drakesteel Shovel",
+  "item.kjs_progression_extender.drakesteel_hoe": "Drakesteel Hoe",
 
   "item.kjs_progression_extender.test_item": "Test Item",
   "item.kjs_progression_extender.test_sword": "Test Sword",
@@ -109,6 +120,7 @@
   "block.kjs_progression_extender.cosmite_ore": "Cosmite Ore",
 
   "block.kjs_progression_extender.amalgamite_block": "Block of Amalgamite",
+  "block.kjs_progression_extender.cosmite_block": "Block of Cosmite",
 
   "block.kjs_progression_extender.jeweling_station": "Jeweling Station",
 

@@ -71,17 +71,25 @@ public class ModItemModelProvider extends ItemModelProvider {
         simpleItem(ModItems.ELEMENTITE);
         simpleItem(ModItems.METEORITE_SHARD);
         simpleItem(ModItems.COSMITE_DUST);
+        simpleItem(ModItems.COSMITE);
 
         simpleItem(ModItems.DRAKE_SCALE);
         simpleItem(ModItems.DRAKE_HIDE);
 
+        simpleItem(ModItems.EARTH_ESSENCE);
+        simpleItem(ModItems.WATER_ESSENCE);
+        simpleItem(ModItems.FIRE_ESSENCE);
+        simpleItem(ModItems.LIGHTNING_ESSENCE);
+        simpleItem(ModItems.LIGHT_ESSENCE);
+        simpleItem(ModItems.DARK_ESSENCE);
+
         simpleItem(ModItems.DRAKESTEEL_INGOT);
+        simpleItem(ModItems.TERRALITE_INGOT);
         simpleItem(ModItems.PYROLITE_INGOT);
         simpleItem(ModItems.HYDROLITE_INGOT);
-        simpleItem(ModItems.TERRALITE_INGOT);
         simpleItem(ModItems.FULGURITE_INGOT);
-        simpleItem(ModItems.VOIDBLIGHT_INGOT);
         simpleItem(ModItems.GLEAMSTONE_INGOT);
+        simpleItem(ModItems.VOIDBLIGHT_INGOT);
         simpleItem(ModItems.STARCAST_INGOT);
 
         simpleItem(ModItems.SIMPLE_HANDLE);
@@ -100,6 +108,10 @@ public class ModItemModelProvider extends ItemModelProvider {
         simpleItem(ModItems.DIVINE_PLATING);
 
         handheldItem(ModItems.DRAKESTEEL_PICKAXE);
+        handheldItem(ModItems.DRAKESTEEL_AXE);
+        handheldItem(ModItems.DRAKESTEEL_SHOVEL);
+        handheldItem(ModItems.DRAKESTEEL_HOE);
+
         handheldItem(ModItems.TEST_SWORD);
         handheldItem(ModItems.AMALGAMITE_SWORD);
 

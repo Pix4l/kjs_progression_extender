@@ -23,10 +23,12 @@ public class AttackDamageCalculation {
         if (!event.getEntity().getCommandSenderWorld().isClientSide && event.getSource().getEntity() instanceof Player player) {
             Entity target = event.getEntity();
             CompoundTag targetTag = target.getPersistentData();
+            CompoundTag playerTag = player.getPersistentData();
             CompoundTag playerItemTag = player.getMainHandItem().getTag();
 
-            placeNbt(targetTag);
+            placeNbt(targetTag, playerTag);
             int[] resistances = targetTag.getIntArray("resistances");
+            int[] attunement = playerTag.getIntArray("attunement");
 
             double base = event.getAmount();
 
@@ -38,6 +40,8 @@ public class AttackDamageCalculation {
             double lifeSteal = 0;
             double cooldown = 0;
             double cooldownReduction = 0;
+
+            double[] attunementMultiplier = calcAttunementMultiplier(attunement);
 
             //Apply Armor Bonuses
             for (int i = 0; i < 4; i++) {
@@ -79,6 +83,8 @@ public class AttackDamageCalculation {
                 cooldowns[0] = ((int) cooldown);
             }
 
+
+
             //Calculations
             base *= strengthModifier;
 
@@ -86,10 +92,14 @@ public class AttackDamageCalculation {
                 base *= critDamage;
             }
 
-            spawnDamageText(target, base, elementalDamage, elementalDamageModifier);
+            for (int i = 0; i < 4; i++) {
+                elementalDamage[i] = elementalDamage[i] * elementalDamageModifier * attunementMultiplier[i];
+            }
+
+            spawnDamageText(target, base, elementalDamage);
 
             for (int i = 0; i < 4; i++) {
-                base += elementalDamage[i] * elementalDamageModifier;
+                base += elementalDamage[i];
             }
 
             double healAmount = lifeSteal * base;
@@ -99,11 +109,25 @@ public class AttackDamageCalculation {
         }
     }
 
-    private static void placeNbt (CompoundTag targetTag) {
+    private static void placeNbt (CompoundTag targetTag, CompoundTag playerTag) {
         if (!targetTag.contains("resistances")) {
             int[] resistances = {0,0,0,0};
             targetTag.putIntArray("resistances", resistances);
         }
+
+        if (!playerTag.contains("attunement")) {
+            int[] attunement = {0,0,0,0,0,0};
+            playerTag.putIntArray("attunement", attunement);
+        }
+    }
+
+    private static double[] calcAttunementMultiplier (int[] attunement) {
+        double[] multiplier = {1,1,1,1};
+        for (int i = 0; i < 4; i++) {
+            multiplier[i] = 1 + Math.pow((double) attunement[i] / 100, 0.33);
+            multiplier[i] *= 1 + Math.log(1.0 + Math.sqrt((double) (attunement[4] * attunement[5]) / (1 + attunement[4] + attunement[5])));
+        }
+        return multiplier;
     }
 
     private static double[] calcGemElementalDamage (ModWeaponItem weaponItem, double[] elementalDamage, int[] resistances, int[] gemstones) {
@@ -255,7 +279,7 @@ public class AttackDamageCalculation {
         return armorBuff + gemstoneBuff;
     }
 
-    private static void spawnDamageText(Entity target, double damage, double[] elementalDamage, double elementalDamageModifier) {
+    private static void spawnDamageText(Entity target, double damage, double[] elementalDamage) {
         Level level = target.level();
         DamageTextDisplay display = new DamageTextDisplay(EntityType.TEXT_DISPLAY, level, 30);
         display.moveTo(new Vec3(target.getX() + Math.random() / 3, target.getY() + 1 + Math.random() / 3, target.getZ() + Math.random() / 3));
@@ -264,16 +288,16 @@ public class AttackDamageCalculation {
         String damageText = String.format("%.0f", damage);
 
         if (elementalDamage[0] > 0) {
-            damageText = damageText + " §2" + String.format("%.0f", elementalDamage[0] * elementalDamageModifier) + "§r";
+            damageText = damageText + " §2" + String.format("%.0f", elementalDamage[0]) + "§r";
         }
         if (elementalDamage[1] > 0) {
-            damageText = damageText + " §4" + String.format("%.0f", elementalDamage[1] * elementalDamageModifier) + "§r";
+            damageText = damageText + " §4" + String.format("%.0f", elementalDamage[1]) + "§r";
         }
         if (elementalDamage[2] > 0) {
-            damageText = damageText + " §9" + String.format("%.0f", elementalDamage[2] * elementalDamageModifier) + "§r";
+            damageText = damageText + " §9" + String.format("%.0f", elementalDamage[2]) + "§r";
         }
         if (elementalDamage[3] > 0) {
-            damageText = damageText + " §e" + String.format("%.0f", elementalDamage[3] * elementalDamageModifier) + "§r";
+            damageText = damageText + " §e" + String.format("%.0f", elementalDamage[3]) + "§r";
         }
 
         display.getEntityData().set(TextDisplay.DATA_TEXT_ID, Component.literal(damageText));

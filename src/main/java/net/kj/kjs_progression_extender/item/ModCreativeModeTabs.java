@@ -89,10 +89,20 @@ public class ModCreativeModeTabs {
 
                         output.accept(ModBlocks.COSMITE_ORE.get());
                         output.accept(ModItems.COSMITE_DUST.get());
+                        output.accept(ModItems.COSMITE.get());
+                        output.accept(ModBlocks.COSMITE_BLOCK.get());
 
                         //Ingot Crafting
                         output.accept(ModItems.DRAKE_SCALE.get());
                         output.accept(ModItems.DRAKE_HIDE.get());
+
+                        //Essences
+                        output.accept(ModItems.EARTH_ESSENCE.get());
+                        output.accept(ModItems.FIRE_ESSENCE.get());
+                        output.accept(ModItems.WATER_ESSENCE.get());
+                        output.accept(ModItems.LIGHTNING_ESSENCE.get());
+                        output.accept(ModItems.LIGHT_ESSENCE.get());
+                        output.accept(ModItems.DARK_ESSENCE.get());
 
                         //Ingots
                         output.accept(ModItems.DRAKESTEEL_INGOT.get());
@@ -122,6 +132,11 @@ public class ModCreativeModeTabs {
 
                         //Tools
                         output.accept(ModItems.DRAKESTEEL_PICKAXE.get());
+                        output.accept(ModItems.DRAKESTEEL_AXE.get());
+                        output.accept(ModItems.DRAKESTEEL_SHOVEL.get());
+                        output.accept(ModItems.DRAKESTEEL_HOE.get());
+
+                        //Weapons
                         output.accept(ModItems.TEST_SWORD.get());
                         output.accept(ModItems.AMALGAMITE_SWORD.get());
 

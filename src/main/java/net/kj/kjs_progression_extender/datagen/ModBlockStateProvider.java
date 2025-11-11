@@ -47,6 +47,7 @@ public class ModBlockStateProvider extends BlockStateProvider {
         blockWithItem(ModBlocks.DEEPSLATE_TOPAZ_ORE);
 
         blockWithItem(ModBlocks.AMALGAMITE_BLOCK);
+        blockWithItem(ModBlocks.COSMITE_BLOCK);
 
         blockWithItem(ModBlocks.DEEPSLATE_AMALGAMITE_ORE);
         blockWithItem(ModBlocks.ELEMENTITE_ORE);

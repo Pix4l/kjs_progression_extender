@@ -1,5 +1,6 @@
 package net.kj.kjs_progression_extender.util;
 
+import net.minecraft.nbt.CompoundTag;
 import net.minecraft.world.entity.Display.TextDisplay;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.level.Level;
@@ -12,8 +13,6 @@ public class DamageTextDisplay extends TextDisplay {
         this.lifetime = lifetime;
     }
 
-
-
     @Override
     public void tick() {
         super.tick();
@@ -23,5 +22,10 @@ public class DamageTextDisplay extends TextDisplay {
                 this.discard();
             }
         }
+    }
+
+    @Override
+    public boolean save(CompoundTag compoundTag) {
+        return false;
     }
 }

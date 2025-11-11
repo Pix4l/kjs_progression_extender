@@ -57,6 +57,7 @@ public class ModBlockLootTables extends BlockLootSubProvider {
                 block -> createOreDrop(ModBlocks.DEEPSLATE_TOPAZ_ORE.get(), ModItems.TOPAZ.get()));
 
         this.dropSelf(ModBlocks.AMALGAMITE_BLOCK.get());
+        this.dropSelf(ModBlocks.COSMITE_BLOCK.get());
 
         this.add(ModBlocks.DEEPSLATE_AMALGAMITE_ORE.get(),
                 block -> createOreDrop(ModBlocks.DEEPSLATE_AMALGAMITE_ORE.get(), ModItems.AMALGAMITE.get()));

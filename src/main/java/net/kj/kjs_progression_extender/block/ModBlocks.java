@@ -96,6 +96,8 @@ public class ModBlocks {
     //OTHER BLOCKS
     public static final RegistryObject<Block> AMALGAMITE_BLOCK = registerBlock("amalgamite_block",
             () -> new Block(BlockBehaviour.Properties.copy(Blocks.IRON_BLOCK)), ModRarities.KJUNCOMMON);
+    public static final RegistryObject<Block> COSMITE_BLOCK = registerBlock("cosmite_block",
+            () -> new Block(BlockBehaviour.Properties.copy(Blocks.IRON_BLOCK)), ModRarities.KJEPIC);
 
     //GEMSTONE STATIONS
     public static final RegistryObject<Block> JEWELING_STATION = registerBlock("jeweling_station",
