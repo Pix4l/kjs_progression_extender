@@ -1,15 +1,22 @@
 package net.kj.kjs_progression_extender;
 
 import com.mojang.logging.LogUtils;
+import net.kj.kjs_progression_extender.attribute.ModAttributes;
 import net.kj.kjs_progression_extender.block.ModBlocks;
 import net.kj.kjs_progression_extender.block.entity.ModBlockEntities;
 import net.kj.kjs_progression_extender.item.ModCreativeModeTabs;
 import net.kj.kjs_progression_extender.item.ModItems;
+import net.kj.kjs_progression_extender.mana.ManaCapability;
+import net.kj.kjs_progression_extender.network.ModNetworking;
 import net.kj.kjs_progression_extender.recipe.ModRecipes;
+import net.kj.kjs_progression_extender.screen.ModOverlays;
 import net.kj.kjs_progression_extender.screen.JewelingStationScreen;
 import net.kj.kjs_progression_extender.screen.ModMenuTypes;
+import net.kj.kjs_progression_extender.util.CapabilityEvents;
 import net.minecraft.client.gui.screens.MenuScreens;
 import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.client.event.RegisterGuiOverlaysEvent;
+import net.minecraftforge.client.gui.overlay.VanillaGuiOverlay;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.BuildCreativeModeTabContentsEvent;
 import net.minecraftforge.event.server.ServerStartingEvent;
@@ -35,12 +42,16 @@ public class KJsProgressionExtender
         IEventBus modEventBus = context.getModEventBus();
 
         ModCreativeModeTabs.register(modEventBus);
-
         ModItems.register(modEventBus);
         ModBlocks.register(modEventBus);
         ModRecipes.register(modEventBus);
         ModBlockEntities.register(modEventBus);
         ModMenuTypes.register(modEventBus);
+        ModAttributes.register(modEventBus);
+
+        MinecraftForge.EVENT_BUS.register(new CapabilityEvents());
+        MinecraftForge.EVENT_BUS.register(ManaCapability.class);
+        ModNetworking.register();
 
         modEventBus.addListener(this::commonSetup);
 
@@ -76,6 +87,12 @@ public class KJsProgressionExtender
             MenuScreens.register(ModMenuTypes.JEWELING_STATION_MENU.get(), JewelingStationScreen::new);
         }
 
+        @SubscribeEvent
+        public static void onRegisterOverlays(RegisterGuiOverlaysEvent event) {
+            event.registerAbove(VanillaGuiOverlay.HOTBAR.id(), "mana_bar", ModOverlays.MANA_BAR);
+            event.registerAbove(VanillaGuiOverlay.HOTBAR.id(), "health_text", ModOverlays.HEALTH_TEXT);
+            event.registerAbove(VanillaGuiOverlay.HOTBAR.id(), "mana_text", ModOverlays.MANA_TEXT);
+        }
 
     }
 }

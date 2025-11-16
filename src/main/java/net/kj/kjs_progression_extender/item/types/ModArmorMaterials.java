@@ -1,8 +1,7 @@
-package net.kj.kjs_progression_extender.item.custom;
+package net.kj.kjs_progression_extender.item.types;
 
 import net.kj.kjs_progression_extender.KJsProgressionExtender;
 import net.kj.kjs_progression_extender.item.ModItems;
-import net.minecraft.client.resources.sounds.Sound;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.item.ArmorItem;

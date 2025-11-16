@@ -2,6 +2,7 @@ package net.kj.kjs_progression_extender.item;
 
 import net.kj.kjs_progression_extender.KJsProgressionExtender;
 import net.kj.kjs_progression_extender.item.custom.*;
+import net.kj.kjs_progression_extender.item.types.*;
 import net.minecraft.world.item.*;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.registries.DeferredRegister;

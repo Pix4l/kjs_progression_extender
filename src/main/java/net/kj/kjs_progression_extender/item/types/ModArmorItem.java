@@ -1,7 +1,8 @@
-package net.kj.kjs_progression_extender.item.custom;
+package net.kj.kjs_progression_extender.item.types;
 
 import com.google.common.collect.ImmutableMultimap;
 import com.google.common.collect.Multimap;
+import net.kj.kjs_progression_extender.attribute.ModAttributes;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.ai.attributes.Attribute;
@@ -9,9 +10,9 @@ import net.minecraft.world.entity.ai.attributes.AttributeInstance;
 import net.minecraft.world.entity.ai.attributes.AttributeModifier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.ArmorItem;
+import net.minecraft.world.item.ArmorMaterial;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.SwordItem;
-import net.minecraft.world.item.Tier;
 import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.level.Level;
 import org.jetbrains.annotations.Nullable;
@@ -19,8 +20,7 @@ import org.jetbrains.annotations.Nullable;
 import java.util.List;
 import java.util.UUID;
 
-public class ModWeaponItem extends SwordItem {
-    int attackDamage;
+public class ModArmorItem extends ArmorItem {
     int attackSpeed;
     int strength;
     int critDamage;
@@ -34,12 +34,12 @@ public class ModWeaponItem extends SwordItem {
     int defence;
     int speed;
 
-    UUID WEAPON_HEALTH_BONUS_ID = UUID.randomUUID();
-    UUID WEAPON_SPEED_BONUS_ID = UUID.randomUUID();
+    UUID ARMOR_HEALTH_BONUS_ID = UUID.randomUUID();
+    UUID ARMOR_SPEED_BONUS_ID = UUID.randomUUID();
+    UUID ARMOR_MANA_BONUS_ID = UUID.randomUUID();
 
-    public ModWeaponItem(Tier pTier, int pAttackDamageModifier, float pAttackSpeedModifier, Properties pProperties, int strength, int critDamage, int critChance, int elementalDamage, int lifeSteal, int attackSpeed, int health, int healthRegen, int mana, int manaRegen, int defence, int speed) {
-        super(pTier, pAttackDamageModifier, pAttackSpeedModifier, pProperties);
-        this.attackDamage = pAttackDamageModifier;
+    public ModArmorItem(ArmorMaterial pMaterial, Type pType, Properties pProperties, int attackSpeed, int strength, int critDamage, int critChance, int elementalDamage, int lifeSteal, int health, int healthRegen, int mana, int manaRegen, int defence, int speed) {
+        super(pMaterial, pType, pProperties);
         this.attackSpeed = attackSpeed;
         this.strength = strength;
         this.critDamage = critDamage;
@@ -64,15 +64,11 @@ public class ModWeaponItem extends SwordItem {
         super.onInventoryTick(stack, level, player, slotIndex, selectedIndex);
         putNbt(stack);
 
-        applyHealthBonus(WEAPON_HEALTH_BONUS_ID, player, stack.getTag().getIntArray("gemstones"), slotIndex, selectedIndex);
-        applySpeedBonus(WEAPON_HEALTH_BONUS_ID, player, stack.getTag().getIntArray("gemstones"), slotIndex, selectedIndex);
+        int[] gemstones = stack.getTag().getIntArray("gemstones");
 
-        int[] cooldowns = stack.getTag().getIntArray("cooldowns");
-        for (int i = 0; i < 2; i++) {
-            if (cooldowns[i] > 0) {
-                cooldowns[i] --;
-            }
-        }
+        applyHealthBonus(ARMOR_HEALTH_BONUS_ID, player, gemstones, slotIndex);
+        applySpeedBonus(ARMOR_SPEED_BONUS_ID, player, gemstones, slotIndex);
+        applyManaBonus(ARMOR_MANA_BONUS_ID, player, gemstones, slotIndex);
     }
 
     @Override
@@ -81,8 +77,46 @@ public class ModWeaponItem extends SwordItem {
 
         int[] gemstones = pStack.getTag().getIntArray("gemstones");
 
-        pTooltipComponents.add(Component.literal("§7Attack Damage: §c+" + String.valueOf(this.attackDamage)));
-
+        if (this.defence > 0 || getGemstoneDefenceModifier(gemstones) > 0) {
+            String defenceTooltip = "§7Defence: §2" + String.valueOf(this.defence);
+            int gemstoneBuff = getGemstoneDefenceModifier(gemstones);
+            if (gemstoneBuff > 0) {
+                defenceTooltip += " §e(+" + String.valueOf(getGemstoneDefenceModifier(gemstones)) + ")";
+            }
+            pTooltipComponents.add(Component.literal(defenceTooltip));
+        }
+        if (this.health > 0 || getGemstoneHealthModifier(gemstones) > 0) {
+            String healthTooltip = "§7Health Bonus: §c" + String.valueOf(this.health);
+            int gemstoneBuff = getGemstoneHealthModifier(gemstones);
+            if (gemstoneBuff > 0) {
+                healthTooltip += " §e(+" + String.valueOf(gemstoneBuff) + ")";
+            }
+            pTooltipComponents.add(Component.literal(healthTooltip));
+        }
+        if (this.healthRegen > 0 || getGemstoneRegenModifier(gemstones) > 0) {
+            String regenTooltip = "§7Health Regen: §c" + String.valueOf(this.healthRegen) + "/5s";
+            int gemstoneBuff = getGemstoneRegenModifier(gemstones);
+            if (gemstoneBuff > 0) {
+                regenTooltip += " §e(+" + String.valueOf(gemstoneBuff) + "/5s)";
+            }
+            pTooltipComponents.add(Component.literal(regenTooltip));
+        }
+        if (this.mana > 0 || getGemstoneManaModifier(gemstones) > 0) {
+            String manaTooltip = "§7Mana Bonus: §1" + String.valueOf(this.mana);
+            int gemstoneBuff = getGemstoneManaModifier(gemstones);
+            if (gemstoneBuff > 0) {
+                manaTooltip += " §e(+" + String.valueOf(gemstoneBuff) + ")";
+            }
+            pTooltipComponents.add(Component.literal(manaTooltip));
+        }
+        if (this.manaRegen > 0 || getGemstoneManaRegenModifier(gemstones) > 0) {
+            String regenTooltip = "§7Mana Regen: §1" + String.valueOf(this.manaRegen) + "/5s";
+            int gemstoneBuff = getGemstoneManaRegenModifier(gemstones);
+            if (gemstoneBuff > 0) {
+                regenTooltip += " §e(+" + String.valueOf(gemstoneBuff) + "/5s)";
+            }
+            pTooltipComponents.add(Component.literal(regenTooltip));
+        }
         if (this.strength > 0 || getGemstoneStrengthModifier(gemstones) > 0) {
             String strengthTooltip = "§7Strength: §c+" + String.valueOf(this.strength);
             int gemstoneBuff = getGemstoneStrengthModifier(gemstones);
@@ -124,44 +158,17 @@ public class ModWeaponItem extends SwordItem {
             pTooltipComponents.add(Component.literal(lifeStealTooltip));
         }
         if (this.attackSpeed > 0 || getGemstoneAttackSpeedModifier(gemstones) > 0) {
-            String attackSpeedTooltip = "§7Attack Speed: §5+" + String.format("%.1f", 20 / ((double) this.attackSpeed));
+            String attackSpeedTooltip = "§7Attack Speed: §5+";
+            if (this.attackSpeed == 0) {
+                attackSpeedTooltip += "0";
+            } else {
+                attackSpeedTooltip += String.format("%.1f", 20 / ((double) this.attackSpeed));
+            }
             int gemstoneBuff = getGemstoneAttackSpeedModifier(gemstones);
             if (gemstoneBuff > 0) {
                 attackSpeedTooltip += " §e(+" + String.valueOf(gemstoneBuff) + ")";
             }
             pTooltipComponents.add(Component.literal(attackSpeedTooltip));
-        }
-        if (this.health > 0 || getGemstoneHealthModifier(gemstones) > 0) {
-            String healthTooltip = "§7Health Bonus: §c" + String.valueOf(this.health);
-            int gemstoneBuff = getGemstoneHealthModifier(gemstones);
-            if (gemstoneBuff > 0) {
-                healthTooltip += " §e(+" + String.valueOf(gemstoneBuff) + ")";
-            }
-            pTooltipComponents.add(Component.literal(healthTooltip));
-        }
-        if (this.healthRegen > 0 || getGemstoneRegenModifier(gemstones) > 0) {
-            String regenTooltip = "§7Health Regen: §c" + String.valueOf(this.healthRegen) + "/5s";
-            int gemstoneBuff = getGemstoneRegenModifier(gemstones);
-            if (gemstoneBuff > 0) {
-                regenTooltip += " §e(+" + String.valueOf(gemstoneBuff) + "/5s)";
-            }
-            pTooltipComponents.add(Component.literal(regenTooltip));
-        }
-        if (this.mana > 0 || getGemstoneManaModifier(gemstones) > 0) {
-            String manaTooltip = "§7Mana Bonus: §1" + String.valueOf(this.mana);
-            int gemstoneBuff = getGemstoneManaModifier(gemstones);
-            if (gemstoneBuff > 0) {
-                manaTooltip += " §e(+" + String.valueOf(gemstoneBuff) + ")";
-            }
-            pTooltipComponents.add(Component.literal(manaTooltip));
-        }
-        if (this.manaRegen > 0 || getGemstoneManaRegenModifier(gemstones) > 0) {
-            String regenTooltip = "§7Mana Regen: §1" + String.valueOf(this.manaRegen) + "/5s";
-            int gemstoneBuff = getGemstoneManaRegenModifier(gemstones);
-            if (gemstoneBuff > 0) {
-                regenTooltip += " §e(+" + String.valueOf(gemstoneBuff) + "/5s)";
-            }
-            pTooltipComponents.add(Component.literal(regenTooltip));
         }
         if (this.speed > 0 || getGemstoneSpeedModifier(gemstones) > 0) {
             String speedTooltip = "§7Speed Bonus: §f" + String.valueOf(this.speed);
@@ -171,14 +178,7 @@ public class ModWeaponItem extends SwordItem {
             }
             pTooltipComponents.add(Component.literal(speedTooltip));
         }
-        if (this.defence > 0 || getGemstoneDefenceModifier(gemstones) > 0) {
-            String defenceTooltip = "§7Defence: §2" + String.valueOf(this.defence);
-            int gemstoneBuff = getGemstoneDefenceModifier(gemstones);
-            if (gemstoneBuff > 0) {
-                defenceTooltip += " §e(+" + String.valueOf(getGemstoneDefenceModifier(gemstones)) + ")";
-            }
-            pTooltipComponents.add(Component.literal(defenceTooltip));
-        }
+
 
 
 
@@ -190,11 +190,6 @@ public class ModWeaponItem extends SwordItem {
         if (!pStack.getTag().contains("gemstones")) {
             int[] ints = {0,0,0,0,0,0};
             pStack.getTag().putIntArray("gemstones", ints);
-        }
-
-        if (!pStack.getTag().contains("cooldowns")) {
-            int[] cooldowns = {0, 0};
-            pStack.getTag().putIntArray("cooldowns", cooldowns);
         }
     }
 
@@ -244,34 +239,50 @@ public class ModWeaponItem extends SwordItem {
 
     }
 
-    private void applyHealthBonus(UUID uuid, Player player, int[] gemstones, int slotIndex, int selectedIndex) {
+    private void applyHealthBonus(UUID uuid, Player player, int[] gemstones, int slotIndex) {
         AttributeInstance health = player.getAttribute(Attributes.MAX_HEALTH);
 
-        if (slotIndex == selectedIndex) {
-            if (health.getModifier(WEAPON_HEALTH_BONUS_ID) == null) {
+        if (slotIndex == 39 - this.type.ordinal()) {
+            if (health.getModifier(uuid) == null) {
                 int buffAmount = this.health + getGemstoneHealthModifier(gemstones);
-                health.addTransientModifier(new AttributeModifier(WEAPON_HEALTH_BONUS_ID, "weapon_health_bonus", buffAmount, AttributeModifier.Operation.ADDITION));
+                health.addTransientModifier(new AttributeModifier(uuid, "weapon_health_bonus", buffAmount, AttributeModifier.Operation.ADDITION));
             }
         } else {
-            AttributeModifier modifier = health.getModifier(WEAPON_HEALTH_BONUS_ID);
+            AttributeModifier modifier = health.getModifier(uuid);
             if (modifier != null) {
-                health.removeModifier(WEAPON_HEALTH_BONUS_ID);
+                health.removeModifier(uuid);
             }
         }
     }
 
-    private void applySpeedBonus(UUID uuid, Player player, int[] gemstones, int slotIndex, int selectedIndex) {
+    private void applySpeedBonus(UUID uuid, Player player, int[] gemstones, int slotIndex) {
         AttributeInstance speed = player.getAttribute(Attributes.MOVEMENT_SPEED);
 
-        if (slotIndex == selectedIndex) {
-            if (speed.getModifier(WEAPON_SPEED_BONUS_ID) == null) {
+        if (slotIndex == 39 - this.type.ordinal()) {
+            if (speed.getModifier(uuid) == null) {
                 int buffAmount = this.speed + getGemstoneSpeedModifier(gemstones);
-                speed.addTransientModifier(new AttributeModifier(WEAPON_SPEED_BONUS_ID, "weapon_speed_bonus", (double) buffAmount / 1000, AttributeModifier.Operation.ADDITION));
+                speed.addTransientModifier(new AttributeModifier(uuid, "weapon_speed_bonus", (double) buffAmount / 1000, AttributeModifier.Operation.ADDITION));
             }
         } else {
-            AttributeModifier modifier = speed.getModifier(WEAPON_SPEED_BONUS_ID);
+            AttributeModifier modifier = speed.getModifier(uuid);
             if (modifier != null) {
-                speed.removeModifier(WEAPON_SPEED_BONUS_ID);
+                speed.removeModifier(uuid);
+            }
+        }
+    }
+
+    private void applyManaBonus(UUID uuid, Player player, int[] gemstones, int slotIndex) {
+        AttributeInstance mana = player.getAttribute(ModAttributes.MAX_MANA.get());
+
+        if (slotIndex == 39 - this.type.ordinal()) {
+            if (mana.getModifier(uuid) == null) {
+                int buffAmount = this.mana + getGemstoneManaModifier(gemstones);
+                mana.addTransientModifier(new AttributeModifier(uuid, "weapon_mana_bonus", buffAmount, AttributeModifier.Operation.ADDITION));
+            }
+        } else {
+            AttributeModifier modifier = mana.getModifier(uuid);
+            if (modifier != null) {
+                mana.removeModifier(uuid);
             }
         }
     }
@@ -490,10 +501,6 @@ public class ModWeaponItem extends SwordItem {
         }
 
         return gemstoneBuff;
-    }
-
-    public float getAttackDamage () {
-        return this.attackDamage;
     }
 
     public int getStrength () {

@@ -1,4 +1,4 @@
-package net.kj.kjs_progression_extender.item.custom;
+package net.kj.kjs_progression_extender.item.types;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Vec3i;

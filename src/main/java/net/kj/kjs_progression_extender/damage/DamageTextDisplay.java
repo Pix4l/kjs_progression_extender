@@ -1,4 +1,4 @@
-package net.kj.kjs_progression_extender.util;
+package net.kj.kjs_progression_extender.damage;
 
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.world.entity.Display.TextDisplay;

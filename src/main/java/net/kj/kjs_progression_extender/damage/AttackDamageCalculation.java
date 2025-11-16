@@ -1,8 +1,8 @@
-package net.kj.kjs_progression_extender.util;
+package net.kj.kjs_progression_extender.damage;
 
 import net.kj.kjs_progression_extender.KJsProgressionExtender;
-import net.kj.kjs_progression_extender.item.custom.ModArmorItem;
-import net.kj.kjs_progression_extender.item.custom.ModWeaponItem;
+import net.kj.kjs_progression_extender.item.types.ModArmorItem;
+import net.kj.kjs_progression_extender.item.types.ModWeaponItem;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.entity.Display;

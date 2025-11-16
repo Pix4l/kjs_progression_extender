@@ -1,4 +1,4 @@
-package net.kj.kjs_progression_extender.util;
+package net.kj.kjs_progression_extender.damage;
 
 import net.kj.kjs_progression_extender.KJsProgressionExtender;
 import net.minecraft.network.chat.Component;

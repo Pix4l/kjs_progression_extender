@@ -2,7 +2,6 @@ package net.kj.kjs_progression_extender.block.entity;
 
 import net.kj.kjs_progression_extender.block.ModBlocks;
 import net.kj.kjs_progression_extender.item.ModItems;
-import net.kj.kjs_progression_extender.item.custom.ModWeaponItem;
 import net.kj.kjs_progression_extender.screen.JewelingStationMenu;
 import net.kj.kjs_progression_extender.util.ModTags;
 import net.minecraft.core.BlockPos;
@@ -28,8 +27,6 @@ import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.ItemStackHandler;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
-
-import java.util.List;
 
 public class JewelingStationBlockEntity extends BlockEntity implements MenuProvider {
     private final ItemStackHandler itemHandler = new ItemStackHandler(3);
