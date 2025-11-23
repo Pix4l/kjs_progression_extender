@@ -139,6 +139,10 @@ public class ModCreativeModeTabs {
                         //Weapons
                         output.accept(ModItems.TEST_SWORD.get());
                         output.accept(ModItems.AMALGAMITE_SWORD.get());
+                        output.accept(ModItems.ROGUE_DIRK.get());
+
+                        //Bows
+                        output.accept(ModItems.SHORTBOW.get());
 
                         //ARMOR
                         output.accept(ModItems.AMALGAMITE_HELMET.get());

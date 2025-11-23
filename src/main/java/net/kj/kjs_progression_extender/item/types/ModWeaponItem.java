@@ -3,6 +3,7 @@ package net.kj.kjs_progression_extender.item.types;
 import com.google.common.collect.ImmutableMultimap;
 import com.google.common.collect.Multimap;
 import net.kj.kjs_progression_extender.attribute.ModAttributes;
+import net.kj.kjs_progression_extender.util.GemstoneBuffs;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.ai.attributes.Attribute;
@@ -66,7 +67,7 @@ public class ModWeaponItem extends SwordItem {
         int[] gemstones = stack.getTag().getIntArray("gemstones");
 
         applyHealthBonus(WEAPON_HEALTH_BONUS_ID, player, gemstones, slotIndex, selectedIndex);
-        applySpeedBonus(WEAPON_HEALTH_BONUS_ID, player, gemstones, slotIndex, selectedIndex);
+        applySpeedBonus(WEAPON_SPEED_BONUS_ID, player, gemstones, slotIndex, selectedIndex);
         applyManaBonus(WEAPON_MANA_BONUS_ID, player, gemstones, slotIndex, selectedIndex);
 
         int[] cooldowns = stack.getTag().getIntArray("cooldowns");
@@ -85,99 +86,99 @@ public class ModWeaponItem extends SwordItem {
 
         pTooltipComponents.add(Component.literal("§7Attack Damage: §c+" + String.valueOf(this.attackDamage)));
 
-        if (this.strength > 0 || getGemstoneStrengthModifier(gemstones) > 0) {
+        if (this.strength > 0 || GemstoneBuffs.getStrengthModifier(gemstones) > 0) {
             String strengthTooltip = "§7Strength: §c+" + String.valueOf(this.strength);
-            int gemstoneBuff = getGemstoneStrengthModifier(gemstones);
+            int gemstoneBuff = GemstoneBuffs.getStrengthModifier(gemstones);
             if (gemstoneBuff > 0) {
                 strengthTooltip += " §e(+" + String.valueOf(gemstoneBuff) + ")";
             }
             pTooltipComponents.add(Component.literal(strengthTooltip));
         }
-        if (this.critDamage > 0 || getGemstoneCritDamageModifier(gemstones) > 0) {
+        if (this.critDamage > 0 || GemstoneBuffs.getCritDamageModifier(gemstones) > 0) {
             String critDamageTooltip = "§7Crit Damage: §3+" + String.valueOf(this.critDamage);
-            int gemstoneBuff = getGemstoneCritDamageModifier(gemstones);
+            int gemstoneBuff = GemstoneBuffs.getCritDamageModifier(gemstones);
             if (gemstoneBuff > 0) {
                 critDamageTooltip += " §e(+" + String.valueOf(gemstoneBuff) + ")";
             }
             pTooltipComponents.add(Component.literal(critDamageTooltip));
         }
-        if (this.critChance > 0 || getGemstoneCritChanceModifier(gemstones) > 0) {
+        if (this.critChance > 0 || GemstoneBuffs.getCritChanceModifier(gemstones) > 0) {
             String critChanceTooltip = "§7Crit Chance: §3+" + String.valueOf(this.critChance);
-            int gemstoneBuff = getGemstoneCritChanceModifier(gemstones);
+            int gemstoneBuff = GemstoneBuffs.getCritChanceModifier(gemstones);
             if (gemstoneBuff > 0) {
                 critChanceTooltip += " §e(+" + String.valueOf(gemstoneBuff) + ")";
             }
             pTooltipComponents.add(Component.literal(critChanceTooltip));
         }
-        if (this.elementalDamage > 0 || getGemstoneElementalDamageModifier(gemstones) > 0) {
+        if (this.elementalDamage > 0 || GemstoneBuffs.getElementalDamageModifier(gemstones) > 0) {
             String elementalDamageTooltip = "§7Elemental Damage: §2+" + String.valueOf(this.elementalDamage);
-            int gemstoneBuff = getGemstoneElementalDamageModifier(gemstones);
+            int gemstoneBuff = GemstoneBuffs.getElementalDamageModifier(gemstones);
             if (gemstoneBuff > 0) {
                 elementalDamageTooltip += " §e(+" + String.valueOf(gemstoneBuff) + ")";
             }
             pTooltipComponents.add(Component.literal(elementalDamageTooltip));
         }
-        if (this.lifeSteal > 0 || getGemstoneLifeStealModifier(gemstones) > 0) {
+        if (this.lifeSteal > 0 || GemstoneBuffs.getLifeStealModifier(gemstones) > 0) {
             String lifeStealTooltip = "§7Life Steal: §4+" + String.valueOf(this.lifeSteal);
-            int gemstoneBuff = getGemstoneLifeStealModifier(gemstones);
+            int gemstoneBuff = GemstoneBuffs.getLifeStealModifier(gemstones);
             if (gemstoneBuff > 0) {
                 lifeStealTooltip += " §e(+" + String.valueOf(gemstoneBuff) + ")";
             }
             pTooltipComponents.add(Component.literal(lifeStealTooltip));
         }
-        if (this.attackSpeed > 0 || getGemstoneAttackSpeedModifier(gemstones) > 0) {
+        if (this.attackSpeed > 0 || GemstoneBuffs.getAttackSpeedModifier(gemstones) > 0) {
             String attackSpeedTooltip = "§7Attack Speed: §5+" + String.format("%.1f", 20 / ((double) this.attackSpeed));
-            int gemstoneBuff = getGemstoneAttackSpeedModifier(gemstones);
+            int gemstoneBuff = GemstoneBuffs.getAttackSpeedModifier(gemstones);
             if (gemstoneBuff > 0) {
                 attackSpeedTooltip += " §e(+" + String.valueOf(gemstoneBuff) + ")";
             }
             pTooltipComponents.add(Component.literal(attackSpeedTooltip));
         }
-        if (this.health > 0 || getGemstoneHealthModifier(gemstones) > 0) {
+        if (this.health > 0 || GemstoneBuffs.getHealthModifier(gemstones) > 0) {
             String healthTooltip = "§7Health Bonus: §c" + String.valueOf(this.health);
-            int gemstoneBuff = getGemstoneHealthModifier(gemstones);
+            int gemstoneBuff = GemstoneBuffs.getHealthModifier(gemstones);
             if (gemstoneBuff > 0) {
                 healthTooltip += " §e(+" + String.valueOf(gemstoneBuff) + ")";
             }
             pTooltipComponents.add(Component.literal(healthTooltip));
         }
-        if (this.healthRegen > 0 || getGemstoneRegenModifier(gemstones) > 0) {
+        if (this.healthRegen > 0 || GemstoneBuffs.getRegenModifier(gemstones) > 0) {
             String regenTooltip = "§7Health Regen: §c" + String.valueOf(this.healthRegen) + "/5s";
-            int gemstoneBuff = getGemstoneRegenModifier(gemstones);
+            int gemstoneBuff = GemstoneBuffs.getRegenModifier(gemstones);
             if (gemstoneBuff > 0) {
                 regenTooltip += " §e(+" + String.valueOf(gemstoneBuff) + "/5s)";
             }
             pTooltipComponents.add(Component.literal(regenTooltip));
         }
-        if (this.mana > 0 || getGemstoneManaModifier(gemstones) > 0) {
+        if (this.mana > 0 || GemstoneBuffs.getManaModifier(gemstones) > 0) {
             String manaTooltip = "§7Mana Bonus: §1" + String.valueOf(this.mana);
-            int gemstoneBuff = getGemstoneManaModifier(gemstones);
+            int gemstoneBuff = GemstoneBuffs.getManaModifier(gemstones);
             if (gemstoneBuff > 0) {
                 manaTooltip += " §e(+" + String.valueOf(gemstoneBuff) + ")";
             }
             pTooltipComponents.add(Component.literal(manaTooltip));
         }
-        if (this.manaRegen > 0 || getGemstoneManaRegenModifier(gemstones) > 0) {
+        if (this.manaRegen > 0 || GemstoneBuffs.getManaRegenModifier(gemstones) > 0) {
             String regenTooltip = "§7Mana Regen: §1" + String.valueOf(this.manaRegen) + "/5s";
-            int gemstoneBuff = getGemstoneManaRegenModifier(gemstones);
+            int gemstoneBuff = GemstoneBuffs.getManaRegenModifier(gemstones);
             if (gemstoneBuff > 0) {
                 regenTooltip += " §e(+" + String.valueOf(gemstoneBuff) + "/5s)";
             }
             pTooltipComponents.add(Component.literal(regenTooltip));
         }
-        if (this.speed > 0 || getGemstoneSpeedModifier(gemstones) > 0) {
+        if (this.speed > 0 || GemstoneBuffs.getSpeedModifier(gemstones) > 0) {
             String speedTooltip = "§7Speed Bonus: §f" + String.valueOf(this.speed);
-            int gemstoneBuff = getGemstoneSpeedModifier(gemstones);
+            int gemstoneBuff = GemstoneBuffs.getSpeedModifier(gemstones);
             if (gemstoneBuff > 0) {
-                speedTooltip +=  " §e(+" + String.valueOf(getGemstoneSpeedModifier(gemstones)) + ")";
+                speedTooltip +=  " §e(+" + String.valueOf(GemstoneBuffs.getSpeedModifier(gemstones)) + ")";
             }
             pTooltipComponents.add(Component.literal(speedTooltip));
         }
-        if (this.defence > 0 || getGemstoneDefenceModifier(gemstones) > 0) {
+        if (this.defence > 0 || GemstoneBuffs.getDefenceModifier(gemstones) > 0) {
             String defenceTooltip = "§7Defence: §2" + String.valueOf(this.defence);
-            int gemstoneBuff = getGemstoneDefenceModifier(gemstones);
+            int gemstoneBuff = GemstoneBuffs.getDefenceModifier(gemstones);
             if (gemstoneBuff > 0) {
-                defenceTooltip += " §e(+" + String.valueOf(getGemstoneDefenceModifier(gemstones)) + ")";
+                defenceTooltip += " §e(+" + String.valueOf(GemstoneBuffs.getDefenceModifier(gemstones)) + ")";
             }
             pTooltipComponents.add(Component.literal(defenceTooltip));
         }
@@ -255,7 +256,7 @@ public class ModWeaponItem extends SwordItem {
 
         if (slotIndex == selectedIndex) {
             if (health.getModifier(uuid) == null) {
-                int buffAmount = this.health + getGemstoneHealthModifier(gemstones);
+                int buffAmount = this.health + GemstoneBuffs.getHealthModifier(gemstones);
                 health.addTransientModifier(new AttributeModifier(uuid, "weapon_health_bonus", buffAmount, AttributeModifier.Operation.ADDITION));
             }
         } else {
@@ -271,7 +272,7 @@ public class ModWeaponItem extends SwordItem {
 
         if (slotIndex == selectedIndex) {
             if (speed.getModifier(uuid) == null) {
-                int buffAmount = this.speed + getGemstoneSpeedModifier(gemstones);
+                int buffAmount = this.speed + GemstoneBuffs.getSpeedModifier(gemstones);
                 speed.addTransientModifier(new AttributeModifier(uuid, "weapon_speed_bonus", (double) buffAmount / 1000, AttributeModifier.Operation.ADDITION));
             }
         } else {
@@ -287,7 +288,7 @@ public class ModWeaponItem extends SwordItem {
 
         if (slotIndex == selectedIndex) {
             if (mana.getModifier(uuid) == null) {
-                int buffAmount = this.mana + getGemstoneManaModifier(gemstones);
+                int buffAmount = this.mana + GemstoneBuffs.getManaModifier(gemstones);
                 mana.addTransientModifier(new AttributeModifier(uuid, "weapon_mana_bonus", buffAmount, AttributeModifier.Operation.ADDITION));
             }
         } else {
@@ -296,222 +297,6 @@ public class ModWeaponItem extends SwordItem {
                 mana.removeModifier(uuid);
             }
         }
-    }
-
-    public int getGemstoneStrengthModifier (int[] gemstones) {
-        int gemstoneBuff = 0;
-        for (int i = 1; i < 6; i += 3) {
-            if (gemstones[i] == 1 && gemstones[i - 1] != 9) {
-                gemstoneBuff += gemstones[i - 1] * 10;
-            }
-        }
-
-        if (gemstones[0] == 9) {
-            gemstoneBuff += 65;
-        }
-        if (gemstones[3] == 9) {
-            gemstoneBuff += 65;
-        }
-
-        return gemstoneBuff;
-    }
-
-    public int getGemstoneCritDamageModifier (int[] gemstones) {
-        int gemstoneBuff = 0;
-        for (int i = 1; i < 6; i += 3) {
-            if (gemstones[i] == 1 && gemstones[i - 1] != 9) {
-                gemstoneBuff += gemstones[i - 1] * 10;
-            }
-        }
-
-        if (gemstones[0] == 9) {
-            gemstoneBuff += 65;
-        }
-        if (gemstones[3] == 9) {
-            gemstoneBuff += 65;
-        }
-
-        return gemstoneBuff;
-    }
-
-    public int getGemstoneCritChanceModifier (int[] gemstones) {
-        int gemstoneBuff = 0;
-        for (int i = 1; i < 6; i += 3) {
-            if (gemstones[i] == 3 && gemstones[i - 1] != 9) {
-                gemstoneBuff += gemstones[i - 1] * 4;
-            }
-        }
-
-        if (gemstones[0] == 9) {
-            gemstoneBuff += 25;
-        }
-        if (gemstones[3] == 9) {
-            gemstoneBuff += 25;
-        }
-
-        return gemstoneBuff;
-    }
-
-    public int getGemstoneElementalDamageModifier (int[] gemstones) {
-        int gemstoneBuff = 0;
-        for (int i = 1; i < 6; i += 3) {
-            if (gemstones[i] == 2 && gemstones[i - 1] != 9) {
-                gemstoneBuff += gemstones[i - 1] * 20;
-            }
-        }
-
-        if (gemstones[0] == 9) {
-            gemstoneBuff += 125;
-        }
-        if (gemstones[3] == 9) {
-            gemstoneBuff += 125;
-        }
-
-        return gemstoneBuff;
-    }
-
-    public int getGemstoneLifeStealModifier (int[] gemstones) {
-        int gemstoneBuff = 0;
-        for (int i = 1; i < 6; i += 3) {
-            if (gemstones[i] == 1 && gemstones[i - 1] != 9) {
-                gemstoneBuff += gemstones[i - 1];
-            }
-        }
-
-        if (gemstones[0] == 9) {
-            gemstoneBuff += 5;
-        }
-        if (gemstones[3] == 9) {
-            gemstoneBuff += 5;
-        }
-
-        return gemstoneBuff;
-    }
-
-    public int getGemstoneAttackSpeedModifier (int[] gemstones) {
-        int gemstoneBuff = 0;
-        for (int i = 1; i < 6; i += 3) {
-            if (gemstones[i] == 3 && gemstones[i - 1] != 9) {
-                gemstoneBuff += gemstones[i - 1] * 3;
-            }
-        }
-
-        if (gemstones[0] == 9) {
-            gemstoneBuff += 20;
-        }
-        if (gemstones[3] == 9) {
-            gemstoneBuff += 20;
-        }
-
-        return gemstoneBuff;
-    }
-
-    public int getGemstoneHealthModifier (int[] gemstones) {
-        int gemstoneBuff = 0;
-        for (int i = 1; i < 6; i += 3) {
-            if (gemstones[i] == 0 && gemstones[i - 1] != 9) {
-                gemstoneBuff += gemstones[i - 1] * 5;
-            }
-        }
-
-        if (gemstones[0] == 9) {
-            gemstoneBuff += 30;
-        }
-        if (gemstones[3] == 9) {
-            gemstoneBuff += 30;
-        }
-
-        return gemstoneBuff;
-    }
-
-    public int getGemstoneManaModifier (int[] gemstones) {
-        int gemstoneBuff = 0;
-        for (int i = 1; i < 6; i += 3) {
-            if (gemstones[i] == 2 && gemstones[i - 1] != 9) {
-                gemstoneBuff += gemstones[i - 1] * 5;
-            }
-        }
-
-        if (gemstones[0] == 9) {
-            gemstoneBuff += 30;
-        }
-        if (gemstones[3] == 9) {
-            gemstoneBuff += 30;
-        }
-
-        return gemstoneBuff;
-    }
-
-    public int getGemstoneSpeedModifier (int[] gemstones) {
-        int gemstoneBuff = 0;
-        for (int i = 1; i < 6; i += 3) {
-            if (gemstones[i] == 3 && gemstones[i - 1] != 9) {
-                gemstoneBuff += gemstones[i - 1] * 3;
-            }
-        }
-
-        if (gemstones[0] == 9) {
-            gemstoneBuff += 20;
-        }
-        if (gemstones[3] == 9) {
-            gemstoneBuff += 20;
-        }
-
-        return gemstoneBuff;
-    }
-
-    public int getGemstoneDefenceModifier (int[] gemstones) {
-        int gemstoneBuff = 0;
-        for (int i = 1; i < 6; i += 3) {
-            if (gemstones[i] == 0 && gemstones[i - 1] != 9) {
-                gemstoneBuff += gemstones[i - 1] * 10;
-            }
-        }
-
-        if (gemstones[0] == 9) {
-            gemstoneBuff += 55;
-        }
-        if (gemstones[3] == 9) {
-            gemstoneBuff += 55;
-        }
-
-        return gemstoneBuff;
-    }
-
-    public int getGemstoneRegenModifier (int[] gemstones) {
-        int gemstoneBuff = 0;
-        for (int i = 1; i < 6; i += 3) {
-            if (gemstones[i] == 0 && gemstones[i - 1] != 9) {
-                gemstoneBuff += gemstones[i - 1] * 5;
-            }
-        }
-
-        if (gemstones[0] == 9) {
-            gemstoneBuff += 30;
-        }
-        if (gemstones[3] == 9) {
-            gemstoneBuff += 30;
-        }
-
-        return gemstoneBuff;
-    }
-
-    public int getGemstoneManaRegenModifier (int[] gemstones) {
-        int gemstoneBuff = 0;
-        for (int i = 1; i < 6; i += 3) {
-            if (gemstones[i] == 2 && gemstones[i - 1] != 9) {
-                gemstoneBuff += gemstones[i - 1] * 5;
-            }
-        }
-
-        if (gemstones[0] == 9) {
-            gemstoneBuff += 30;
-        }
-        if (gemstones[3] == 9) {
-            gemstoneBuff += 30;
-        }
-
-        return gemstoneBuff;
     }
 
     public float getAttackDamage () {

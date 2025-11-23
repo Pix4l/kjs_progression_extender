@@ -17,7 +17,7 @@ public class ModAttributes {
             ATTRIBUTES.register("max_mana",
                     () -> new RangedAttribute("attribute." + KJsProgressionExtender.MOD_ID + ".max_mana",
                             20.0F,
-                            0.0F,
+                            20.0F,
                             10000.0F
                     ).setSyncable(true)
             );

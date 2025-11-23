@@ -162,8 +162,14 @@ public class ModItems {
     //WEAPONS
     public static final RegistryObject<Item> AMALGAMITE_SWORD = ITEMS.register("amalgamite_sword",
             () -> new ModWeaponItem(ModToolTiers.DRAKESTEEL, 10, -2.4f, new Item.Properties().rarity(ModRarities.KJUNCOMMON), 50, 50, 10, 0, 0, 13, 0, 0, 0, 0, 0, 0));
+    public static final RegistryObject<Item> ROGUE_DIRK = ITEMS.register("rogue_dirk",
+            () -> new RogueDirk(ModToolTiers.DRAKESTEEL, 5, -2.4f, new Item.Properties().rarity(ModRarities.KJUNCOMMON), 10, 30, 30, 0, 0, 11, 0, 0, 0, 0, 0, 0, 200));
     public static final RegistryObject<Item> TEST_SWORD = ITEMS.register("test_sword",
             () -> new ModWeaponItem(ModToolTiers.DRAKESTEEL, 500, -2.4f, new Item.Properties().rarity(ModRarities.KJRARE), 500, 350, 30, 300, 5, 30, 0, 0, 0, 0, 0, 0));
+
+    //BOWS
+    public static final RegistryObject<Item> SHORTBOW = ITEMS.register("shortbow",
+            () -> new ModBowItem(new Item.Properties().rarity(ModRarities.KJUNCOMMON), true, 1, 5, 20, 15, 30, 20, 0, 0, 0, 0, 0, 0, 0, 0));
 
     //ARMOR
     public static final RegistryObject<Item> AMALGAMITE_HELMET = ITEMS.register("amalgamite_helmet",

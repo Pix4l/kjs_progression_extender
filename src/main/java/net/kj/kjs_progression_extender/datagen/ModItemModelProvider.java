@@ -114,6 +114,9 @@ public class ModItemModelProvider extends ItemModelProvider {
 
         handheldItem(ModItems.TEST_SWORD);
         handheldItem(ModItems.AMALGAMITE_SWORD);
+        handheldItem(ModItems.ROGUE_DIRK);
+
+        handheldItem(ModItems.SHORTBOW);
 
         trimmedArmorItem(ModItems.AMALGAMITE_HELMET);
         trimmedArmorItem(ModItems.AMALGAMITE_CHESTPLATE);

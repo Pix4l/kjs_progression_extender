@@ -21,6 +21,8 @@ public class ModConfiguredFeatures {
     public static final ResourceKey<ConfiguredFeature<?, ?>> OVERWORLD_RUBY_ORE_KEY = registerKey("ruby_ore");
     public static final ResourceKey<ConfiguredFeature<?, ?>> OVERWORLD_SAPPHIRE_ORE_KEY = registerKey("sapphire_ore");
     public static final ResourceKey<ConfiguredFeature<?, ?>> OVERWORLD_TOPAZ_ORE_KEY = registerKey("topaz_ore");
+    public static final ResourceKey<ConfiguredFeature<?, ?>> OVERWORLD_AMALGAMITE_ORE_KEY = registerKey("amalgamite_ore");
+    public static final ResourceKey<ConfiguredFeature<?, ?>> OVERWORLD_ELEMENTITE_ORE_KEY = registerKey("elementite_ore");
 
     public static void bootstrap(BootstapContext<ConfiguredFeature<?,?>> context) {
         RuleTest stoneReplaceable = new TagMatchTest(BlockTags.STONE_ORE_REPLACEABLES);
@@ -34,11 +36,16 @@ public class ModConfiguredFeatures {
                 OreConfiguration.target(deepslateReplaceable, ModBlocks.DEEPSLATE_SAPPHIRE_ORE.get().defaultBlockState()));
         List<OreConfiguration.TargetBlockState> overworldTopazOres = List.of(OreConfiguration.target(stoneReplaceable, ModBlocks.TOPAZ_ORE.get().defaultBlockState()),
                 OreConfiguration.target(deepslateReplaceable, ModBlocks.DEEPSLATE_TOPAZ_ORE.get().defaultBlockState()));
+        List<OreConfiguration.TargetBlockState> overworldAmalgamiteOre = List.of(OreConfiguration.target(deepslateReplaceable, ModBlocks.DEEPSLATE_AMALGAMITE_ORE.get().defaultBlockState()));
+        List<OreConfiguration.TargetBlockState> overworldElementiteOres = List.of(OreConfiguration.target(stoneReplaceable, ModBlocks.ELEMENTITE_ORE.get().defaultBlockState()),
+                OreConfiguration.target(deepslateReplaceable, ModBlocks.DEEPSLATE_ELEMENTITE_ORE.get().defaultBlockState()));
 
-        register(context, OVERWORLD_JADE_ORE_KEY, Feature.ORE, new OreConfiguration(overworldJadeOres, 2));
-        register(context, OVERWORLD_RUBY_ORE_KEY, Feature.ORE, new OreConfiguration(overworldRubyOres, 2));
-        register(context, OVERWORLD_SAPPHIRE_ORE_KEY, Feature.ORE, new OreConfiguration(overworldSapphireOres, 2));
-        register(context, OVERWORLD_TOPAZ_ORE_KEY, Feature.ORE, new OreConfiguration(overworldTopazOres, 2));
+        register(context, OVERWORLD_JADE_ORE_KEY, Feature.ORE, new OreConfiguration(overworldJadeOres, 3));
+        register(context, OVERWORLD_RUBY_ORE_KEY, Feature.ORE, new OreConfiguration(overworldRubyOres, 3));
+        register(context, OVERWORLD_SAPPHIRE_ORE_KEY, Feature.ORE, new OreConfiguration(overworldSapphireOres, 3));
+        register(context, OVERWORLD_TOPAZ_ORE_KEY, Feature.ORE, new OreConfiguration(overworldTopazOres, 3));
+        register(context, OVERWORLD_AMALGAMITE_ORE_KEY, Feature.ORE, new OreConfiguration(overworldAmalgamiteOre, 5));
+        register(context, OVERWORLD_ELEMENTITE_ORE_KEY, Feature.ORE, new OreConfiguration(overworldElementiteOres, 2));
 
 
     }

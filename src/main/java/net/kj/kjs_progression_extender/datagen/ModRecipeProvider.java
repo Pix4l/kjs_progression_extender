@@ -155,6 +155,17 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
                 .unlockedBy(getHasName(ModItems.DRAKE_SCALE.get()), has(ModItems.DRAKE_SCALE.get()))
                 .save(pWriter);
 
+        UpgradeRecipeBuilder.shaped(RecipeCategory.MISC, ModItems.ROGUE_DIRK.get())
+                .pattern(" B ")
+                .pattern(" S ")
+                .pattern("AHA")
+                .define('B', ModItems.SIMPLE_BLADE.get())
+                .define('S', Items.GOLDEN_SWORD)
+                .define('A', ModItems.CONCENTRATED_AMALGAMITE.get())
+                .define('H', ModItems.SIMPLE_HANDLE.get())
+                .unlockedBy(getHasName(ModItems.AMALGAMITE.get()), has(ModItems.AMALGAMITE.get()))
+                .save(pWriter);
+
         UpgradeRecipeBuilder.shaped(RecipeCategory.MISC, ModItems.AMALGAMITE_SWORD.get())
                 .pattern("ABA")
                 .pattern("ASA")

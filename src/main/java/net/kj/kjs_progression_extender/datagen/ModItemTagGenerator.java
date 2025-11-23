@@ -175,7 +175,9 @@ public class ModItemTagGenerator extends ItemTagsProvider {
 
         this.tag(ModTags.Items.IS_GEMMABLE)
                 .add(ModItems.TEST_SWORD.get(),
+                        ModItems.ROGUE_DIRK.get(),
                         ModItems.AMALGAMITE_SWORD.get(),
+                        ModItems.SHORTBOW.get(),
                         ModItems.AMALGAMITE_HELMET.get(),
                         ModItems.AMALGAMITE_CHESTPLATE.get(),
                         ModItems.AMALGAMITE_LEGGINGS.get(),

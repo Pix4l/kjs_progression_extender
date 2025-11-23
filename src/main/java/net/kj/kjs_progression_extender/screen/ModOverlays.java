@@ -32,12 +32,15 @@ public class ModOverlays {
                         double max = mc.player.getAttribute(ModAttributes.MAX_MANA.get()).getValue();
                         double manaPerDrop = max / 10;
                         for (int i = 0; i < 10; i++) {
-                            if ((i + 0.7) * manaPerDrop < current) {
-                                guiGraphics.blit(MANA_BAR_TEXTURE, startX + 8 * (i + 1), screenHeight - 49, 0, 0, 9, 9);
-                            } else if (i * manaPerDrop < current) {
+                            if (current < (i * manaPerDrop) + 1) {
+                                //EMPTY
+                                guiGraphics.blit(MANA_BAR_TEXTURE, startX + 8 * (i + 1), screenHeight - 49, 18, 0, 9, 9);
+                            } else if (current < ((i + 0.5) * manaPerDrop) + 1) {
+                                //HALF
                                 guiGraphics.blit(MANA_BAR_TEXTURE, startX + 8 * (i + 1), screenHeight - 49, 9, 0, 9, 9);
                             } else {
-                                guiGraphics.blit(MANA_BAR_TEXTURE, startX + 8 * (i + 1), screenHeight - 49, 18, 0, 9, 9);
+                                //FULL
+                                guiGraphics.blit(MANA_BAR_TEXTURE, startX + 8 * (i + 1), screenHeight - 49, 0, 0, 9, 9);
                             }
                         }
                     });
@@ -67,8 +70,10 @@ public class ModOverlays {
                     int textWidth = font.width(text);
                     int textX = (screenWidth - textWidth) / 2;
 
+                    int textOffset = ((int) Math.floor(Math.log10(mc.player.getMaxHealth()))) * 2;
+
                     RenderSystem.disableDepthTest();
-                    guiGraphics.drawString(font, text, textX - 110, textY, color, false);
+                    guiGraphics.drawString(font, text, textX - textOffset - 110, textY, color, false);
                     RenderSystem.enableDepthTest();
                 }
             }
@@ -85,7 +90,7 @@ public class ModOverlays {
                     Font font = mc.font;
 
                     mc.player.getCapability(ManaCapability.MANA).ifPresent(iMana -> {
-                        double current = iMana.getMana();
+                        double current = Math.floor(iMana.getMana());
                         double max = mc.player.getAttribute(ModAttributes.MAX_MANA.get()).getValue();
 
                         String text = String.format("%.0f", current) + "/" + String.format("%.0f", max);
@@ -97,8 +102,10 @@ public class ModOverlays {
                         int textWidth = font.width(text);
                         int textX = (screenWidth - textWidth) / 2;
 
+                        int textOffset = ((int) Math.floor(Math.log10(max))) * 2;
+
                         RenderSystem.disableDepthTest();
-                        guiGraphics.drawString(font, text, textX + 110, textY, color, false);
+                        guiGraphics.drawString(font, text, textX + textOffset + 110, textY, color, false);
                         RenderSystem.enableDepthTest();
                     });
                 }

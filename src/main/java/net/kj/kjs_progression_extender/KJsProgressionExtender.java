@@ -13,6 +13,7 @@ import net.kj.kjs_progression_extender.screen.ModOverlays;
 import net.kj.kjs_progression_extender.screen.JewelingStationScreen;
 import net.kj.kjs_progression_extender.screen.ModMenuTypes;
 import net.kj.kjs_progression_extender.util.CapabilityEvents;
+import net.kj.kjs_progression_extender.util.ModItemProperties;
 import net.minecraft.client.gui.screens.MenuScreens;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.client.event.RegisterGuiOverlaysEvent;
@@ -85,6 +86,8 @@ public class KJsProgressionExtender
         public static void onClientSetup(FMLClientSetupEvent event)
         {
             MenuScreens.register(ModMenuTypes.JEWELING_STATION_MENU.get(), JewelingStationScreen::new);
+
+            ModItemProperties.addCustomItemProperties();
         }
 
         @SubscribeEvent
