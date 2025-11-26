@@ -11,7 +11,6 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraftforge.common.capabilities.ForgeCapabilities;
 import net.minecraftforge.items.SlotItemHandler;
-import org.jetbrains.annotations.Nullable;
 
 public class JewelingStationMenu extends AbstractContainerMenu {
     public final JewelingStationBlockEntity blockEntity;
@@ -19,7 +18,7 @@ public class JewelingStationMenu extends AbstractContainerMenu {
     private final ContainerData data;
 
     public JewelingStationMenu(int pContainerId, Inventory inv, FriendlyByteBuf extraData) {
-        this(pContainerId, inv, inv.player.level().getBlockEntity(extraData.readBlockPos()), new SimpleContainerData(3));
+        this(pContainerId, inv, inv.player.level().getBlockEntity(extraData.readBlockPos()), new SimpleContainerData(6));
     }
 
     public JewelingStationMenu(int pContainerId, Inventory inv, BlockEntity entity, ContainerData data) {
@@ -41,6 +40,29 @@ public class JewelingStationMenu extends AbstractContainerMenu {
         addDataSlots(data);
     }
 
+    public boolean isGemstoneInSlot(int slot) {
+        return data.get((slot - 1) * 3) > 0;
+    }
+
+    public int getTypeInSlot(int slot) {
+        return data.get((slot - 1) * 3);
+    }
+
+    public int getSelectedBuff(int slot) {
+        return data.get((slot - 1) * 3 + 1);
+    }
+
+    public int getLevelInSlot(int slot) {
+        return data.get((slot - 1) * 3 + 2);
+    }
+
+    public void setSelectedBuff(int slot, int buff) {
+        data.set((slot - 1) * 3 + 1, buff);
+
+        if (blockEntity != null) {
+            blockEntity.setSelectedBuff(slot, buff);
+        }
+    }
 
     // CREDIT GOES TO: diesieben07 | https://github.com/diesieben07/SevenCommons
     // must assign a slot number to each of the slots used by the GUI.

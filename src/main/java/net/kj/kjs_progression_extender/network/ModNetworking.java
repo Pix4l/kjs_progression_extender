@@ -34,5 +34,14 @@ public class ModNetworking {
                 SyncManaPacket::handle,
                 Optional.of(NetworkDirection.PLAY_TO_CLIENT)
         );
+
+        INSTANCE.registerMessage(
+                nextId(),
+                SyncGemstoneBuffPacket.class,
+                SyncGemstoneBuffPacket::toBytes,
+                SyncGemstoneBuffPacket::new,
+                SyncGemstoneBuffPacket::handle,
+                Optional.of(NetworkDirection.PLAY_TO_SERVER)
+        );
     }
 }

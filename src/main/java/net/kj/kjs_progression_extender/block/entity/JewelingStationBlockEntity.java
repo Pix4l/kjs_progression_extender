@@ -4,6 +4,7 @@ import net.kj.kjs_progression_extender.block.ModBlocks;
 import net.kj.kjs_progression_extender.item.ModItems;
 import net.kj.kjs_progression_extender.screen.JewelingStationMenu;
 import net.kj.kjs_progression_extender.util.ModTags;
+import net.minecraft.client.Minecraft;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.nbt.CompoundTag;
@@ -40,23 +41,44 @@ public class JewelingStationBlockEntity extends BlockEntity implements MenuProvi
     private LazyOptional<IItemHandler> lazyItemHandler = LazyOptional.empty();
 
     protected final ContainerData data;
+    private int type_1 = 0;
+    private int buff_1 = 0;
+    private int level_1 = 0;
+    private int type_2 = 0;
+    private int buff_2 = 0;
+    private int level_2 = 0;
 
     public JewelingStationBlockEntity(BlockPos pPos, BlockState pBlockState) {
         super(ModBlockEntities.JEWELING_STATION_BE.get(), pPos, pBlockState);
         this.data = new ContainerData() {
             @Override
             public int get(int pIndex) {
-                return 0;
+                return switch (pIndex) {
+                    case 0 -> JewelingStationBlockEntity.this.type_1;
+                    case 1 -> JewelingStationBlockEntity.this.buff_1;
+                    case 2 -> JewelingStationBlockEntity.this.level_1;
+                    case 3 -> JewelingStationBlockEntity.this.type_2;
+                    case 4 -> JewelingStationBlockEntity.this.buff_2;
+                    case 5 -> JewelingStationBlockEntity.this.level_2;
+                    default -> 0;
+                };
             }
 
             @Override
             public void set(int pIndex, int pValue) {
-
+                switch (pIndex) {
+                    case 0 -> JewelingStationBlockEntity.this.type_1 = pValue;
+                    case 1 -> JewelingStationBlockEntity.this.buff_1 = pValue;
+                    case 2 -> JewelingStationBlockEntity.this.level_1 = pValue;
+                    case 3 -> JewelingStationBlockEntity.this.type_2 = pValue;
+                    case 4 -> JewelingStationBlockEntity.this.buff_2 = pValue;
+                    case 5 -> JewelingStationBlockEntity.this.level_2 = pValue;
+                }
             }
 
             @Override
             public int getCount() {
-                return 0;
+                return 6;
             }
         };
     }
@@ -145,11 +167,28 @@ public class JewelingStationBlockEntity extends BlockEntity implements MenuProvi
                     gemstones[4] = 0;
                 }
 
+                if (slot1.isEmpty()) {
+                    this.type_1 = 0;
+                    this.level_1 = 0;
+                } else {
+                    this.type_1 = getTypeIndex(slot1);
+                    this.level_1 = getPowerIndex(slot1);
+                }
+
+                if (slot2.isEmpty()) {
+                    this.type_2 = 0;
+                    this.level_2 = 0;
+                } else {
+                    this.type_2 = getTypeIndex(slot2);
+                    this.level_2 = getPowerIndex(slot2);
+                }
+
+                setChanged(pLevel, pPos, pState);
+
                 itemLastTick = input;
             }
 
         } else {
-
             if (!itemLastTick.isEmpty() && itemLastTick.is(ModTags.Items.IS_GEMMABLE)) {
                 if (!itemLastTick.getTag().contains("gemstones")) {
                     int[] gemstones = {0,0,0,0,0,0};
@@ -159,16 +198,20 @@ public class JewelingStationBlockEntity extends BlockEntity implements MenuProvi
                 int[] gemstones = itemLastTick.getTag().getIntArray("gemstones");
 
                 if (gemstones[0] == 0 && itemHandler.getStackInSlot(GEMSTONE_SLOT_1).is(ModTags.Items.GEMSTONES)) {
-                    writeGemstoneToList(1, itemLastTick);
+                    writeGemstoneToList(1, itemLastTick, buff_1);
                     this.itemHandler.extractItem(1, 1, false);
                 }
 
                 if (gemstones[3] == 0 && itemHandler.getStackInSlot(GEMSTONE_SLOT_2).is(ModTags.Items.GEMSTONES)) {
-                    writeGemstoneToList(2, itemLastTick);
+                    writeGemstoneToList(2, itemLastTick, buff_2);
                     this.itemHandler.extractItem(2, 1, false);
                 }
 
                 itemLastTick = ItemStack.EMPTY;
+                this.type_1 = 0;
+                this.buff_1 = 0;
+                this.type_2 = 0;
+                this.buff_2 = 0;
             }
         }
     }
@@ -295,50 +338,66 @@ public class JewelingStationBlockEntity extends BlockEntity implements MenuProvi
         return new ItemStack(ModBlocks.AMALGAMITE_BLOCK.get());
     }
 
-    private void writeGemstoneToList (int slot, ItemStack item) {
+    private void writeGemstoneToList (int slot, ItemStack item, int buff) {
         if (!item.getTag().contains("gemstones")) {
             int[] gemstones = {0,0,0,0,0,0};
             item.getTag().putIntArray("gemstones", gemstones);
         }
 
         int[] gemstones = item.getTag().getIntArray("gemstones");
-
-        int index = 0;
-        int type = 0;
-
         ItemStack gemstone = this.itemHandler.getStackInSlot(slot);
 
-        if(gemstone.is(ModTags.Items.JADE)) {
-            type = 0;
-        } else if (gemstone.is(ModTags.Items.RUBY)) {
-            type = 1;
-        } else if (gemstone.is(ModTags.Items.SAPPHIRE)) {
-            type = 2;
-        } else if (gemstone.is(ModTags.Items.TOPAZ)) {
-            type = 3;
-        }
+        gemstones[(slot - 1) * 3] = getPowerIndex(gemstone);
+        gemstones[(slot - 1) * 3 + 1] = getTypeIndex(gemstone) - 1;
+        gemstones[(slot - 1) * 3 + 2] = buff;
 
-        if(gemstone.is(ModTags.Items.POWER_1)) {
-            index = 1;
-        } else if (gemstone.is(ModTags.Items.POWER_2)) {
-            index = 2;
-        } else if (gemstone.is(ModTags.Items.POWER_3)) {
-            index = 3;
-        } else if (gemstone.is(ModTags.Items.POWER_4)) {
-            index = 4;
-        } else if (gemstone.is(ModTags.Items.POWER_5)) {
-            index = 5;
-        } else if (gemstone.is(ModTags.Items.POWER_6)) {
-            index = 6;
-        } else if (gemstone.is(ModTags.Items.POWER_7)) {
-            index = 7;
-        } else if (gemstone.is(ModTags.Items.POWER_8)) {
-            index = 8;
-        } else if (gemstone.is(ModTags.Items.POWER_9)) {
-            index = 9;
-        }
+        item.getTag().putIntArray("gemstones", gemstones);
+    }
 
-        gemstones[(slot - 1) * 3] = index;
-        gemstones[(slot - 1) * 3 + 1] = type;
+    public void setSelectedBuff(int slot, int buff) {
+        switch (slot) {
+            case 1 -> this.buff_1 = buff;
+            case 2 -> this.buff_2 = buff;
+        }
+    }
+
+    private int getPowerIndex(ItemStack item) {
+        if(item.is(ModTags.Items.POWER_1)) {
+            return 1;
+        } else if (item.is(ModTags.Items.POWER_2)) {
+            return 2;
+        } else if (item.is(ModTags.Items.POWER_3)) {
+            return 3;
+        } else if (item.is(ModTags.Items.POWER_4)) {
+            return 4;
+        } else if (item.is(ModTags.Items.POWER_5)) {
+            return 5;
+        } else if (item.is(ModTags.Items.POWER_6)) {
+            return 6;
+        } else if (item.is(ModTags.Items.POWER_7)) {
+            return 7;
+        } else if (item.is(ModTags.Items.POWER_8)) {
+            return 8;
+        } else if (item.is(ModTags.Items.POWER_9)) {
+            return 9;
+        } else {
+            return 0;
+        }
+    }
+
+    private int getTypeIndex(ItemStack item) {
+        if(item.is(ModTags.Items.JADE)) {
+            return 1;
+        } else if (item.is(ModTags.Items.RUBY)) {
+            return 2;
+        } else if (item.is(ModTags.Items.SAPPHIRE)) {
+            return 3;
+        } else if (item.is(ModTags.Items.TOPAZ)) {
+            return 4;
+        } else if (item.is(ModTags.Items.POWER_9)){
+            return 5;
+        } else {
+            return 0;
+        }
     }
 }

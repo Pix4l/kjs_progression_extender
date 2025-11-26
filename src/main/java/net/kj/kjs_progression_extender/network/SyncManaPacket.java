@@ -3,7 +3,6 @@ package net.kj.kjs_progression_extender.network;
 import net.kj.kjs_progression_extender.mana.ManaCapability;
 import net.minecraft.client.Minecraft;
 import net.minecraft.network.FriendlyByteBuf;
-import net.minecraft.world.entity.player.Player;
 import net.minecraftforge.network.NetworkEvent;
 
 import java.util.function.Supplier;
